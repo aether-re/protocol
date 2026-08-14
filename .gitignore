@@ -1,0 +1,19 @@
+# secrets — never commit
+.seed
+.env
+contracts/cache/
+
+# build output
+contracts/out/
+contracts/lib/
+contracts/broadcast/*/dry-run/
+
+# python
+engine/.venv/
+engine/__pycache__/
+.venv/
+__pycache__/
+*.pyc
+
+# macos
+.DS_Store
