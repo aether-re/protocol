@@ -2,7 +2,7 @@
 
 **An autonomous agent that underwrites catastrophe reinsurance on X Layer.**
 
-[Live dashboard](https://aether-re.xnoxseyi.workers.dev/) · [@aether_re_](https://x.com/aether_re_) · X Layer testnet, chain 1952
+[Live dashboard](https://aether-re.app) · [@aether_re_](https://x.com/aether_re_) · X Layer testnet, chain 1952
 
 ---
 
