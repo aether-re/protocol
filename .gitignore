@@ -17,3 +17,4 @@ __pycache__/
 
 # macos
 .DS_Store
+dashboard/_cache.json
