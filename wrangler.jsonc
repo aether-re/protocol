@@ -1,0 +1,8 @@
+{
+  "name": "aether-re",
+  "compatibility_date": "2026-08-01",
+  "assets": {
+    "directory": "./dashboard",
+    "not_found_handling": "single-page-application"
+  }
+}
