@@ -1,0 +1,3726 @@
+{
+ "generatedAt": 1786795848,
+ "chain": {
+  "id": 1952,
+  "name": "X Layer testnet",
+  "head": 38336706
+ },
+ "contracts": {
+  "VAULT": "0xDC78557b332B1AF7e157ab91D34f432F30481a53",
+  "REGISTRY": "0xA1a61FA6528C72aE3e2515472BDB18FCa2F53106",
+  "SETTLEMENT": "0x61789cD68720a9d3F10e0d0A439D94E61bF1d47F",
+  "ORACLE": "0x1700AE41EFd9Ce17A3b92EEb10D4470aF6E85675",
+  "CEDENT": "0x022d34dB48Acde4214900df04fA2795bd6DF1d88",
+  "AGENTLOG": "0x8dC02883614009e0D93C39C5A21f0ce8c7d344B1",
+  "USDC": "0x82B7CE5992F87Ae64537d708d39Bd233B7aA7cfb"
+ },
+ "verification": {
+  "seedCommitment": "0x097c38be17afb6d93d776fc460c702c96b48f775bd1dcf8c8170093225c3a458",
+  "paramHash": "0x6988eb75f0204da500c0e360b73e1521851d6d811d6e30afafc96acc42b3ec6f",
+  "revealed": false,
+  "eventCount": 81
+ },
+ "vault": {
+  "epoch": 127,
+  "nav": 3496616.804385,
+  "idle": 554163.118665,
+  "deployed": 2942453.68572,
+  "seedCapital": 3200000,
+  "totalReturn": 0.09269275137031241,
+  "cumPremium": 4849657.5556,
+  "cumLosses": 4553040.751215,
+  "lossRatio": 0.9388375775022526
+ },
+ "cedent": {
+  "balance": 49703383.195615,
+  "iou": 0.0
+ },
+ "calibration": {
+  "ratioBps": 6139,
+  "resolvedCount": 94,
+  "eventQuarterCount": 25
+ },
+ "layers": [
+  {
+   "id": 0,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "region": 0,
+   "regionName": "US Southeast",
+   "tranche": 0,
+   "trancheName": "Junior",
+   "name": "FL_WIND_JUNIOR",
+   "attachment": 576.0,
+   "exhaustion": 1301.0,
+   "limit": 725.0,
+   "technicalElBps": 738,
+   "rateOnLineBps": 1182,
+   "linePercent": 0.0,
+   "collateralPosted": 0.0,
+   "collateralRemaining": 0.0,
+   "accruedPremium": 0.0,
+   "termStart": 120,
+   "termEnd": 124,
+   "state": "expired",
+   "erosion": 0
+  },
+  {
+   "id": 1,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "region": 0,
+   "regionName": "US Southeast",
+   "tranche": 1,
+   "trancheName": "Mezz",
+   "name": "FL_WIND_MEZZ",
+   "attachment": 1301.0,
+   "exhaustion": 2280.0,
+   "limit": 979.0,
+   "technicalElBps": 243,
+   "rateOnLineBps": 535,
+   "linePercent": 36.34,
+   "collateralPosted": 355768.6,
+   "collateralRemaining": 355768.6,
+   "accruedPremium": 19033.6201,
+   "termStart": 123,
+   "termEnd": 127,
+   "state": "active",
+   "erosion": 0.0
+  },
+  {
+   "id": 2,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "region": 0,
+   "regionName": "US Southeast",
+   "tranche": 2,
+   "trancheName": "Senior",
+   "name": "FL_WIND_SENIOR",
+   "attachment": 2280.0,
+   "exhaustion": 4165.0,
+   "limit": 1885.0,
+   "technicalElBps": 74,
+   "rateOnLineBps": 260,
+   "linePercent": 0.0,
+   "collateralPosted": 0.0,
+   "collateralRemaining": 0.0,
+   "accruedPremium": 0.0,
+   "termStart": 121,
+   "termEnd": 125,
+   "state": "expired",
+   "erosion": 0
+  },
+  {
+   "id": 3,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "region": 0,
+   "regionName": "US Southeast",
+   "tranche": 0,
+   "trancheName": "Junior",
+   "name": "GULF_WIND_JUNIOR",
+   "attachment": 412.0,
+   "exhaustion": 928.0,
+   "limit": 516.0,
+   "technicalElBps": 739,
+   "rateOnLineBps": 1182,
+   "linePercent": 0.0,
+   "collateralPosted": 0.0,
+   "collateralRemaining": 0.0,
+   "accruedPremium": 0.0,
+   "termStart": 120,
+   "termEnd": 124,
+   "state": "expired",
+   "erosion": 0
+  },
+  {
+   "id": 4,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "region": 0,
+   "regionName": "US Southeast",
+   "tranche": 1,
+   "trancheName": "Mezz",
+   "name": "GULF_WIND_MEZZ",
+   "attachment": 928.0,
+   "exhaustion": 1628.0,
+   "limit": 700.0,
+   "technicalElBps": 246,
+   "rateOnLineBps": 542,
+   "linePercent": 97.57,
+   "collateralPosted": 682990.0,
+   "collateralRemaining": 682990.0,
+   "accruedPremium": 9254.5145,
+   "termStart": 126,
+   "termEnd": 130,
+   "state": "active",
+   "erosion": 0.0
+  },
+  {
+   "id": 5,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "region": 0,
+   "regionName": "US Southeast",
+   "tranche": 2,
+   "trancheName": "Senior",
+   "name": "GULF_WIND_SENIOR",
+   "attachment": 1628.0,
+   "exhaustion": 2944.0,
+   "limit": 1316.0,
+   "technicalElBps": 73,
+   "rateOnLineBps": 256,
+   "linePercent": 52.19,
+   "collateralPosted": 686820.4,
+   "collateralRemaining": 686820.4,
+   "accruedPremium": 8791.30112,
+   "termStart": 125,
+   "termEnd": 129,
+   "state": "active",
+   "erosion": 0.0
+  },
+  {
+   "id": 6,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "region": 1,
+   "regionName": "Europe",
+   "tranche": 0,
+   "trancheName": "Junior",
+   "name": "EU_WIND_JUNIOR",
+   "attachment": 290.0,
+   "exhaustion": 565.0,
+   "limit": 275.0,
+   "technicalElBps": 750,
+   "rateOnLineBps": 1200,
+   "linePercent": 83.59,
+   "collateralPosted": 229872.5,
+   "collateralRemaining": 229872.5,
+   "accruedPremium": 27584.7,
+   "termStart": 123,
+   "termEnd": 127,
+   "state": "active",
+   "erosion": 0.0
+  },
+  {
+   "id": 7,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "region": 1,
+   "regionName": "Europe",
+   "tranche": 1,
+   "trancheName": "Mezz",
+   "name": "EU_WIND_MEZZ",
+   "attachment": 565.0,
+   "exhaustion": 899.0,
+   "limit": 334.0,
+   "technicalElBps": 252,
+   "rateOnLineBps": 554,
+   "linePercent": 100.0,
+   "collateralPosted": 334000.0,
+   "collateralRemaining": 334000.0,
+   "accruedPremium": 0.0,
+   "termStart": 127,
+   "termEnd": 131,
+   "state": "active",
+   "erosion": 0.0
+  },
+  {
+   "id": 8,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "region": 1,
+   "regionName": "Europe",
+   "tranche": 2,
+   "trancheName": "Senior",
+   "name": "EU_WIND_SENIOR",
+   "attachment": 899.0,
+   "exhaustion": 1476.0,
+   "limit": 577.0,
+   "technicalElBps": 75,
+   "rateOnLineBps": 262,
+   "linePercent": 100.0,
+   "collateralPosted": 577000.0,
+   "collateralRemaining": 577000.0,
+   "accruedPremium": 11338.05,
+   "termStart": 124,
+   "termEnd": 128,
+   "state": "active",
+   "erosion": 0.0
+  }
+ ],
+ "epochs": [
+  {
+   "epoch": 0,
+   "premium": 0.0,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3200000.0,
+   "cumPremium": 0.0,
+   "cumLosses": 0.0
+  },
+  {
+   "epoch": 1,
+   "premium": 14110.9,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3214110.9,
+   "cumPremium": 14110.9,
+   "cumLosses": 0.0
+  },
+  {
+   "epoch": 2,
+   "premium": 47113.55,
+   "losses": 725000.0,
+   "released": 0.0,
+   "nav": 2536224.45,
+   "cumPremium": 61224.45,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 3,
+   "premium": 27637.56449,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 2563862.01449,
+   "cumPremium": 88862.01449,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 4,
+   "premium": 27637.56449,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 2591499.57898,
+   "cumPremium": 116499.57898,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 5,
+   "premium": 27637.56449,
+   "losses": 0.0,
+   "released": 1104554.5,
+   "nav": 2619137.14347,
+   "cumPremium": 144137.14347,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 6,
+   "premium": 36630.94366,
+   "losses": 0.0,
+   "released": 916303.25,
+   "nav": 2655768.08713,
+   "cumPremium": 180768.08713,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 7,
+   "premium": 37943.277597,
+   "losses": 0.0,
+   "released": 309396.92245,
+   "nav": 2693711.364727,
+   "cumPremium": 218711.364727,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 8,
+   "premium": 37963.264607,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 2731674.629334,
+   "cumPremium": 256674.629334,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 9,
+   "premium": 37963.264607,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 2769637.893941,
+   "cumPremium": 294637.893941,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 10,
+   "premium": 37963.264607,
+   "losses": 0.0,
+   "released": 1210105.59585,
+   "nav": 2807601.158548,
+   "cumPremium": 332601.158548,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 11,
+   "premium": 28474.342557,
+   "losses": 0.0,
+   "released": 961431.669685,
+   "nav": 2836075.501105,
+   "cumPremium": 361075.501105,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 12,
+   "premium": 28703.199232,
+   "losses": 0.0,
+   "released": 312569.7575,
+   "nav": 2864778.700337,
+   "cumPremium": 389778.700337,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 13,
+   "premium": 35795.690492,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 2900574.390829,
+   "cumPremium": 425574.390829,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 14,
+   "premium": 35795.690492,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 2936370.081321,
+   "cumPremium": 461370.081321,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 15,
+   "premium": 35795.690492,
+   "losses": 0.0,
+   "released": 1281565.1856,
+   "nav": 2972165.771813,
+   "cumPremium": 497165.771813,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 16,
+   "premium": 43780.932487,
+   "losses": 0.0,
+   "released": 999151.15306,
+   "nav": 3015946.7043,
+   "cumPremium": 540946.7043,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 17,
+   "premium": 44265.415112,
+   "losses": 0.0,
+   "released": 351908.4138,
+   "nav": 3060212.119412,
+   "cumPremium": 585212.119412,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 18,
+   "premium": 44974.437812,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3105186.557224,
+   "cumPremium": 630186.557224,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 19,
+   "premium": 44974.437812,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3150160.995036,
+   "cumPremium": 675160.995036,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 20,
+   "premium": 44974.437812,
+   "losses": 0.0,
+   "released": 1403663.895575,
+   "nav": 3195135.432848,
+   "cumPremium": 720135.432848,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 21,
+   "premium": 34412.272047,
+   "losses": 0.0,
+   "released": 1037796.566185,
+   "nav": 3229547.704895,
+   "cumPremium": 754547.704895,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 22,
+   "premium": 34925.561747,
+   "losses": 0.0,
+   "released": 379447.5273,
+   "nav": 3264473.266642,
+   "cumPremium": 789473.266642,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 23,
+   "premium": 29999.337287,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3294472.603929,
+   "cumPremium": 819472.603929,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 24,
+   "premium": 29999.337287,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3324471.941216,
+   "cumPremium": 849471.941216,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 25,
+   "premium": 29999.337287,
+   "losses": 0.0,
+   "released": 1482807.16675,
+   "nav": 3354471.278503,
+   "cumPremium": 879471.278503,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 26,
+   "premium": 47873.276377,
+   "losses": 0.0,
+   "released": 1078739.814685,
+   "nav": 3402344.55488,
+   "cumPremium": 927344.55488,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 27,
+   "premium": 48393.11314,
+   "losses": 0.0,
+   "released": 381635.205,
+   "nav": 3450737.66802,
+   "cumPremium": 975737.66802,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 28,
+   "premium": 48542.97614,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3499280.64416,
+   "cumPremium": 1024280.64416,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 29,
+   "premium": 48542.97614,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3547823.6203,
+   "cumPremium": 1072823.6203,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 30,
+   "premium": 48542.97614,
+   "losses": 0.0,
+   "released": 1659925.0622,
+   "nav": 3596366.59644,
+   "cumPremium": 1121366.59644,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 31,
+   "premium": 51201.04754,
+   "losses": 0.0,
+   "released": 1120205.2985,
+   "nav": 3647567.64398,
+   "cumPremium": 1172567.64398,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 32,
+   "premium": 50121.80984,
+   "losses": 0.0,
+   "released": 393444.52,
+   "nav": 3697689.45382,
+   "cumPremium": 1222689.45382,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 33,
+   "premium": 50275.46684,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3747964.92066,
+   "cumPremium": 1272964.92066,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 34,
+   "premium": 50275.46684,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3798240.3875,
+   "cumPremium": 1323240.3875,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 35,
+   "premium": 50275.46684,
+   "losses": 0.0,
+   "released": 1783081.0192,
+   "nav": 3848515.85434,
+   "cumPremium": 1373515.85434,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 36,
+   "premium": 31753.323,
+   "losses": 0.0,
+   "released": 1155040.31,
+   "nav": 3880269.17734,
+   "cumPremium": 1405269.17734,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 37,
+   "premium": 40057.71225,
+   "losses": 0.0,
+   "released": 405552.805,
+   "nav": 3920326.88959,
+   "cumPremium": 1445326.88959,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 38,
+   "premium": 40158.915637,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3960485.805227,
+   "cumPremium": 1485485.805227,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 39,
+   "premium": 40158.915637,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 4000644.720864,
+   "cumPremium": 1525644.720864,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 40,
+   "premium": 40158.915637,
+   "losses": 0.0,
+   "released": 1715241.5,
+   "nav": 4040803.636501,
+   "cumPremium": 1565803.636501,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 41,
+   "premium": 40158.915637,
+   "losses": 0.0,
+   "released": 1294089.25625,
+   "nav": 4080962.552138,
+   "cumPremium": 1605962.552138,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 42,
+   "premium": 33097.538887,
+   "losses": 0.0,
+   "released": 418594.121935,
+   "nav": 4114060.091025,
+   "cumPremium": 1639060.091025,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 43,
+   "premium": 33275.9799,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 4147336.070925,
+   "cumPremium": 1672336.070925,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 44,
+   "premium": 33275.9799,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 4180612.050825,
+   "cumPremium": 1705612.050825,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 45,
+   "premium": 33275.9799,
+   "losses": 0.0,
+   "released": 1715241.5,
+   "nav": 4213888.030725,
+   "cumPremium": 1738888.030725,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 46,
+   "premium": 45695.86248,
+   "losses": 0.0,
+   "released": 1351973.8725,
+   "nav": 4259583.893205,
+   "cumPremium": 1784583.893205,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 47,
+   "premium": 45852.08548,
+   "losses": 0.0,
+   "released": 432828.627,
+   "nav": 4305435.978685,
+   "cumPremium": 1830435.978685,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 48,
+   "premium": 45958.147892,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 4351394.126577,
+   "cumPremium": 1876394.126577,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 49,
+   "premium": 45958.147892,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 4397352.274469,
+   "cumPremium": 1922352.274469,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 50,
+   "premium": 45958.147892,
+   "losses": 0.0,
+   "released": 1648986.1129,
+   "nav": 4443310.422361,
+   "cumPremium": 1968310.422361,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 51,
+   "premium": 32510.732512,
+   "losses": 0.0,
+   "released": 1377303.4875,
+   "nav": 4475821.154873,
+   "cumPremium": 2000821.154873,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 52,
+   "premium": 44917.505262,
+   "losses": 0.0,
+   "released": 441288.83906,
+   "nav": 4520738.660135,
+   "cumPremium": 2045738.660135,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 53,
+   "premium": 42314.8102,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 4563053.470335,
+   "cumPremium": 2088053.470335,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 54,
+   "premium": 42314.8102,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 4605368.280535,
+   "cumPremium": 2130368.280535,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 55,
+   "premium": 42314.8102,
+   "losses": 0.0,
+   "released": 1549551.836,
+   "nav": 4647683.090735,
+   "cumPremium": 2172683.090735,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 56,
+   "premium": 42045.2934,
+   "losses": 0.0,
+   "released": 1507777.35125,
+   "nav": 4689728.384135,
+   "cumPremium": 2214728.384135,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 57,
+   "premium": 38993.590625,
+   "losses": 0.0,
+   "released": 465351.36375,
+   "nav": 4728721.97476,
+   "cumPremium": 2253721.97476,
+   "cumLosses": 725000.0
+  },
+  {
+   "epoch": 58,
+   "premium": 39015.645125,
+   "losses": 3300.184607,
+   "released": 0.0,
+   "nav": 4764437.435278,
+   "cumPremium": 2292737.619885,
+   "cumLosses": 728300.184607
+  },
+  {
+   "epoch": 59,
+   "premium": 39015.645125,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 4803453.080403,
+   "cumPremium": 2331753.26501,
+   "cumLosses": 728300.184607
+  },
+  {
+   "epoch": 60,
+   "premium": 39015.645125,
+   "losses": 0.0,
+   "released": 1506092.252,
+   "nav": 4842468.725528,
+   "cumPremium": 2370768.910135,
+   "cumLosses": 728300.184607
+  },
+  {
+   "epoch": 61,
+   "premium": 41374.47621,
+   "losses": 0.0,
+   "released": 1595047.452768,
+   "nav": 4883843.201738,
+   "cumPremium": 2412143.386345,
+   "cumLosses": 728300.184607
+  },
+  {
+   "epoch": 62,
+   "premium": 38008.15786,
+   "losses": 0.0,
+   "released": 468854.63625,
+   "nav": 4921851.359598,
+   "cumPremium": 2450151.544205,
+   "cumLosses": 728300.184607
+  },
+  {
+   "epoch": 63,
+   "premium": 38044.91536,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 4959896.274958,
+   "cumPremium": 2488196.459565,
+   "cumLosses": 728300.184607
+  },
+  {
+   "epoch": 64,
+   "premium": 38044.91536,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 4997941.190318,
+   "cumPremium": 2526241.374925,
+   "cumLosses": 728300.184607
+  },
+  {
+   "epoch": 65,
+   "premium": 38044.91536,
+   "losses": 0.0,
+   "released": 1531110.307425,
+   "nav": 5035986.105678,
+   "cumPremium": 2564286.290285,
+   "cumLosses": 728300.184607
+  },
+  {
+   "epoch": 66,
+   "premium": 39626.744475,
+   "losses": 21809.575198,
+   "released": 1601621.670427,
+   "nav": 5053803.274955,
+   "cumPremium": 2603913.03476,
+   "cumLosses": 750109.759805
+  },
+  {
+   "epoch": 67,
+   "premium": 39486.637337,
+   "losses": 0.0,
+   "released": 474693.42375,
+   "nav": 5093289.912292,
+   "cumPremium": 2643399.672097,
+   "cumLosses": 750109.759805
+  },
+  {
+   "epoch": 68,
+   "premium": 39767.219587,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 5133057.131879,
+   "cumPremium": 2683166.891684,
+   "cumLosses": 750109.759805
+  },
+  {
+   "epoch": 69,
+   "premium": 39767.219587,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 5172824.351466,
+   "cumPremium": 2722934.111271,
+   "cumLosses": 750109.759805
+  },
+  {
+   "epoch": 70,
+   "premium": 39767.219587,
+   "losses": 0.0,
+   "released": 1559558.753,
+   "nav": 5212591.571053,
+   "cumPremium": 2762701.330858,
+   "cumLosses": 750109.759805
+  },
+  {
+   "epoch": 71,
+   "premium": 24075.308987,
+   "losses": 0.0,
+   "released": 1612255.409935,
+   "nav": 5236666.88004,
+   "cumPremium": 2786776.639845,
+   "cumLosses": 750109.759805
+  },
+  {
+   "epoch": 72,
+   "premium": 16144.867,
+   "losses": 0.0,
+   "released": 519262.835,
+   "nav": 5252811.74704,
+   "cumPremium": 2802921.506845,
+   "cumLosses": 750109.759805
+  },
+  {
+   "epoch": 73,
+   "premium": 19347.6705,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 5272159.41754,
+   "cumPremium": 2822269.177345,
+   "cumLosses": 750109.759805
+  },
+  {
+   "epoch": 74,
+   "premium": 23127.0205,
+   "losses": 105070.499071,
+   "released": 0.0,
+   "nav": 5190215.938969,
+   "cumPremium": 2845396.197845,
+   "cumLosses": 855180.258876
+  },
+  {
+   "epoch": 75,
+   "premium": 28714.44066,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 5218930.379629,
+   "cumPremium": 2874110.638505,
+   "cumLosses": 855180.258876
+  },
+  {
+   "epoch": 76,
+   "premium": 28714.44066,
+   "losses": 0.0,
+   "released": 568309.000929,
+   "nav": 5247644.820289,
+   "cumPremium": 2902825.079165,
+   "cumLosses": 855180.258876
+  },
+  {
+   "epoch": 77,
+   "premium": 28714.44066,
+   "losses": 0.0,
+   "released": 1028015.8525,
+   "nav": 5276359.260949,
+   "cumPremium": 2931539.519825,
+   "cumLosses": 855180.258876
+  },
+  {
+   "epoch": 78,
+   "premium": 34945.280822,
+   "losses": 0.0,
+   "released": 595896.75,
+   "nav": 5311304.541771,
+   "cumPremium": 2966484.800647,
+   "cumLosses": 855180.258876
+  },
+  {
+   "epoch": 79,
+   "premium": 34945.280822,
+   "losses": 0.0,
+   "released": 900971.5008,
+   "nav": 5346249.822593,
+   "cumPremium": 3001430.081469,
+   "cumLosses": 855180.258876
+  },
+  {
+   "epoch": 80,
+   "premium": 50781.610662,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 5397031.433255,
+   "cumPremium": 3052211.692131,
+   "cumLosses": 855180.258876
+  },
+  {
+   "epoch": 81,
+   "premium": 55193.263782,
+   "losses": 0.0,
+   "released": 673379.5,
+   "nav": 5452224.697037,
+   "cumPremium": 3107404.955913,
+   "cumLosses": 855180.258876
+  },
+  {
+   "epoch": 82,
+   "premium": 55193.263782,
+   "losses": 1815198.249856,
+   "released": 63513.05331,
+   "nav": 3692219.710963,
+   "cumPremium": 3162598.219695,
+   "cumLosses": 2670378.508732
+  },
+  {
+   "epoch": 83,
+   "premium": 25866.20737,
+   "losses": 0.0,
+   "released": 595896.75,
+   "nav": 3718085.918333,
+   "cumPremium": 3188464.427065,
+   "cumLosses": 2670378.508732
+  },
+  {
+   "epoch": 84,
+   "premium": 25866.20737,
+   "losses": 0.0,
+   "released": 64271.25,
+   "nav": 3743952.125703,
+   "cumPremium": 3214330.634435,
+   "cumLosses": 2670378.508732
+  },
+  {
+   "epoch": 85,
+   "premium": 30751.93087,
+   "losses": 0.0,
+   "released": 711379.0656,
+   "nav": 3774704.056573,
+   "cumPremium": 3245082.565305,
+   "cumLosses": 2670378.508732
+  },
+  {
+   "epoch": 86,
+   "premium": 30440.30207,
+   "losses": 0.0,
+   "released": 532909.150144,
+   "nav": 3805144.358643,
+   "cumPremium": 3275522.867375,
+   "cumLosses": 2670378.508732
+  },
+  {
+   "epoch": 87,
+   "premium": 17564.40207,
+   "losses": 0.0,
+   "released": 762351.02125,
+   "nav": 3822708.760713,
+   "cumPremium": 3293087.269445,
+   "cumLosses": 2670378.508732
+  },
+  {
+   "epoch": 88,
+   "premium": 25640.99782,
+   "losses": 0.0,
+   "released": 595896.75,
+   "nav": 3848349.758533,
+   "cumPremium": 3318728.267265,
+   "cumLosses": 2670378.508732
+  },
+  {
+   "epoch": 89,
+   "premium": 25640.99782,
+   "losses": 0.0,
+   "released": 384998.6175,
+   "nav": 3873990.756353,
+   "cumPremium": 3344369.265085,
+   "cumLosses": 2670378.508732
+  },
+  {
+   "epoch": 90,
+   "premium": 31117.964845,
+   "losses": 97550.642483,
+   "released": 661128.9216,
+   "nav": 3807558.078715,
+   "cumPremium": 3375487.22993,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 91,
+   "premium": 31891.141165,
+   "losses": 0.0,
+   "released": 0.0,
+   "nav": 3839449.21988,
+   "cumPremium": 3407378.371095,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 92,
+   "premium": 33849.090665,
+   "losses": 0.0,
+   "released": 575828.857517,
+   "nav": 3873298.310545,
+   "cumPremium": 3441227.46176,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 93,
+   "premium": 29223.190665,
+   "losses": 0.0,
+   "released": 595896.75,
+   "nav": 3902521.50121,
+   "cumPremium": 3470450.652425,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 94,
+   "premium": 29223.190665,
+   "losses": 0.0,
+   "released": 826594.052625,
+   "nav": 3931744.691875,
+   "cumPremium": 3499673.84309,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 95,
+   "premium": 25718.15514,
+   "losses": 0.0,
+   "released": 785803.6032,
+   "nav": 3957462.847015,
+   "cumPremium": 3525391.99823,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 96,
+   "premium": 29713.605362,
+   "losses": 0.0,
+   "released": 311012.7475,
+   "nav": 3987176.452377,
+   "cumPremium": 3555105.603592,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 97,
+   "premium": 52442.755362,
+   "losses": 0.0,
+   "released": 316250.0,
+   "nav": 4039619.207739,
+   "cumPremium": 3607548.358954,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 98,
+   "premium": 52442.755362,
+   "losses": 0.0,
+   "released": 595896.75,
+   "nav": 4092061.963101,
+   "cumPremium": 3659991.114316,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 99,
+   "premium": 52442.755362,
+   "losses": 0.0,
+   "released": 540388.275,
+   "nav": 4144504.718463,
+   "cumPremium": 3712433.869678,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 100,
+   "premium": 53644.504862,
+   "losses": 0.0,
+   "released": 707419.95431,
+   "nav": 4198149.223325,
+   "cumPremium": 3766078.37454,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 101,
+   "premium": 49363.19,
+   "losses": 0.0,
+   "released": 1136325.4975,
+   "nav": 4247512.413325,
+   "cumPremium": 3815441.56454,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 102,
+   "premium": 29301.9905,
+   "losses": 0.0,
+   "released": 316250.0,
+   "nav": 4276814.403825,
+   "cumPremium": 3844743.55504,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 103,
+   "premium": 38725.832262,
+   "losses": 0.0,
+   "released": 595896.75,
+   "nav": 4315540.236087,
+   "cumPremium": 3883469.387302,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 104,
+   "premium": 38725.832262,
+   "losses": 0.0,
+   "released": 635087.0225,
+   "nav": 4354266.068349,
+   "cumPremium": 3922195.219564,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 105,
+   "premium": 34857.414002,
+   "losses": 0.0,
+   "released": 728680.68,
+   "nav": 4389123.482351,
+   "cumPremium": 3957052.633566,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 106,
+   "premium": 34782.673752,
+   "losses": 0.0,
+   "released": 357129.5,
+   "nav": 4423906.156103,
+   "cumPremium": 3991835.307318,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 107,
+   "premium": 34782.673752,
+   "losses": 0.0,
+   "released": 1067955.50881,
+   "nav": 4458688.829855,
+   "cumPremium": 4026617.98107,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 108,
+   "premium": 34814.099652,
+   "losses": 0.0,
+   "released": 595896.75,
+   "nav": 4493502.929507,
+   "cumPremium": 4061432.080722,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 109,
+   "premium": 34814.099652,
+   "losses": 0.0,
+   "released": 675796.5312,
+   "nav": 4528317.029159,
+   "cumPremium": 4096246.180374,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 110,
+   "premium": 47942.072912,
+   "losses": 0.0,
+   "released": 716808.47875,
+   "nav": 4576259.102071,
+   "cumPremium": 4144188.253286,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 111,
+   "premium": 58297.606942,
+   "losses": 0.0,
+   "released": 357129.5,
+   "nav": 4634556.709013,
+   "cumPremium": 4202485.860228,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 112,
+   "premium": 58297.606942,
+   "losses": 0.0,
+   "released": 1070462.23831,
+   "nav": 4692854.315955,
+   "cumPremium": 4260783.46717,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 113,
+   "premium": 58271.37778,
+   "losses": 0.0,
+   "released": 595896.75,
+   "nav": 4751125.693735,
+   "cumPremium": 4319054.84495,
+   "cumLosses": 2767929.151215
+  },
+  {
+   "epoch": 114,
+   "premium": 58271.37778,
+   "losses": 1785111.6,
+   "released": 86594.7975,
+   "nav": 3024285.471515,
+   "cumPremium": 4377326.22273,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 115,
+   "premium": 38457.54425,
+   "losses": 0.0,
+   "released": 59472.51912,
+   "nav": 3062743.015765,
+   "cumPremium": 4415783.76698,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 116,
+   "premium": 39789.96793,
+   "losses": 0.0,
+   "released": 357129.5,
+   "nav": 3102532.983695,
+   "cumPremium": 4455573.73491,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 117,
+   "premium": 39789.96793,
+   "losses": 0.0,
+   "released": 335108.077,
+   "nav": 3142322.951625,
+   "cumPremium": 4495363.70284,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 118,
+   "premium": 39789.96793,
+   "losses": 0.0,
+   "released": 595896.75,
+   "nav": 3182112.919555,
+   "cumPremium": 4535153.67077,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 119,
+   "premium": 39789.96793,
+   "losses": 0.0,
+   "released": 1318514.47125,
+   "nav": 3221902.887485,
+   "cumPremium": 4574943.6387,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 120,
+   "premium": 38775.65543,
+   "losses": 0.0,
+   "released": 214853.3184,
+   "nav": 3260678.542915,
+   "cumPremium": 4613719.29413,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 121,
+   "premium": 41681.3715,
+   "losses": 0.0,
+   "released": 357129.5,
+   "nav": 3302359.914415,
+   "cumPremium": 4655400.66563,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 122,
+   "premium": 41681.3715,
+   "losses": 0.0,
+   "released": 316250.0,
+   "nav": 3344041.285915,
+   "cumPremium": 4697082.03713,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 123,
+   "premium": 45085.951525,
+   "losses": 0.0,
+   "released": 595896.75,
+   "nav": 3389127.23744,
+   "cumPremium": 4742167.988655,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 124,
+   "premium": 45085.951525,
+   "losses": 0.0,
+   "released": 807424.90875,
+   "nav": 3434213.188965,
+   "cumPremium": 4787253.94018,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 125,
+   "premium": 28693.620335,
+   "losses": 0.0,
+   "released": 673212.19875,
+   "nav": 3462906.8093,
+   "cumPremium": 4815947.560515,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 126,
+   "premium": 33709.995085,
+   "losses": 0.0,
+   "released": 357129.5,
+   "nav": 3496616.804385,
+   "cumPremium": 4849657.5556,
+   "cumLosses": 4553040.751215
+  }
+ ],
+ "catastrophes": [
+  {
+   "id": 0,
+   "epoch": 2,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 192.232874348
+  },
+  {
+   "id": 1,
+   "epoch": 2,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 9687.160051838
+  },
+  {
+   "id": 2,
+   "epoch": 2,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 57.898132437
+  },
+  {
+   "id": 3,
+   "epoch": 2,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 376.239643596
+  },
+  {
+   "id": 4,
+   "epoch": 2,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 359.094049193
+  },
+  {
+   "id": 5,
+   "epoch": 10,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 69.179174736
+  },
+  {
+   "id": 6,
+   "epoch": 10,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 177.29248718
+  },
+  {
+   "id": 7,
+   "epoch": 14,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 192.108679907
+  },
+  {
+   "id": 8,
+   "epoch": 14,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 267.611144546
+  },
+  {
+   "id": 9,
+   "epoch": 14,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 223.446378876
+  },
+  {
+   "id": 10,
+   "epoch": 18,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 568.343023531
+  },
+  {
+   "id": 11,
+   "epoch": 18,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 352.254070842
+  },
+  {
+   "id": 12,
+   "epoch": 18,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 231.054539687
+  },
+  {
+   "id": 13,
+   "epoch": 18,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 81.181872609
+  },
+  {
+   "id": 14,
+   "epoch": 18,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 86.138574776
+  },
+  {
+   "id": 15,
+   "epoch": 18,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 114.300751583
+  },
+  {
+   "id": 16,
+   "epoch": 22,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 45.767405844
+  },
+  {
+   "id": 17,
+   "epoch": 26,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 95.950538426
+  },
+  {
+   "id": 18,
+   "epoch": 26,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 153.353604478
+  },
+  {
+   "id": 19,
+   "epoch": 26,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 24.036096786
+  },
+  {
+   "id": 20,
+   "epoch": 30,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 67.28525231
+  },
+  {
+   "id": 21,
+   "epoch": 30,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 32.290423699
+  },
+  {
+   "id": 22,
+   "epoch": 30,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 92.134540822
+  },
+  {
+   "id": 23,
+   "epoch": 46,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 381.167236093
+  },
+  {
+   "id": 24,
+   "epoch": 46,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 375.175881937
+  },
+  {
+   "id": 25,
+   "epoch": 46,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 236.176412356
+  },
+  {
+   "id": 26,
+   "epoch": 46,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 67.536982312
+  },
+  {
+   "id": 27,
+   "epoch": 50,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 37.734478652
+  },
+  {
+   "id": 28,
+   "epoch": 58,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 275.862621568
+  },
+  {
+   "id": 29,
+   "epoch": 58,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 59.313535239
+  },
+  {
+   "id": 30,
+   "epoch": 58,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 293.300184607
+  },
+  {
+   "id": 31,
+   "epoch": 62,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 128.095599866
+  },
+  {
+   "id": 32,
+   "epoch": 62,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 58.020847353
+  },
+  {
+   "id": 33,
+   "epoch": 62,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 154.353818551
+  },
+  {
+   "id": 34,
+   "epoch": 66,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 386.322841582
+  },
+  {
+   "id": 35,
+   "epoch": 66,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 61.776126682
+  },
+  {
+   "id": 36,
+   "epoch": 66,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 311.809575198
+  },
+  {
+   "id": 37,
+   "epoch": 70,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 119.724360426
+  },
+  {
+   "id": 38,
+   "epoch": 70,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 101.539611178
+  },
+  {
+   "id": 39,
+   "epoch": 74,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 174.561297471
+  },
+  {
+   "id": 40,
+   "epoch": 74,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 395.070499071
+  },
+  {
+   "id": 41,
+   "epoch": 78,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 203.180342468
+  },
+  {
+   "id": 42,
+   "epoch": 82,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 5116.841868086
+  },
+  {
+   "id": 43,
+   "epoch": 82,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 1763.967261259
+  },
+  {
+   "id": 44,
+   "epoch": 82,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 1751.419542957
+  },
+  {
+   "id": 45,
+   "epoch": 82,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 1040.466390556
+  },
+  {
+   "id": 46,
+   "epoch": 82,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 205.313905165
+  },
+  {
+   "id": 47,
+   "epoch": 82,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 483.049432089
+  },
+  {
+   "id": 48,
+   "epoch": 82,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 1181.385546477
+  },
+  {
+   "id": 49,
+   "epoch": 82,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 299.365178857
+  },
+  {
+   "id": 50,
+   "epoch": 82,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 279.704046236
+  },
+  {
+   "id": 51,
+   "epoch": 82,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 386.369740587
+  },
+  {
+   "id": 52,
+   "epoch": 82,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 334.100609269
+  },
+  {
+   "id": 53,
+   "epoch": 86,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 251.884549471
+  },
+  {
+   "id": 54,
+   "epoch": 86,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 273.118335593
+  },
+  {
+   "id": 55,
+   "epoch": 86,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 1117.181390377
+  },
+  {
+   "id": 56,
+   "epoch": 86,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 152.017352028
+  },
+  {
+   "id": 57,
+   "epoch": 86,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 891.814219587
+  },
+  {
+   "id": 58,
+   "epoch": 90,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 97.453995441
+  },
+  {
+   "id": 59,
+   "epoch": 90,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 387.550642483
+  },
+  {
+   "id": 60,
+   "epoch": 94,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 45.767062771
+  },
+  {
+   "id": 61,
+   "epoch": 98,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 161.725332881
+  },
+  {
+   "id": 62,
+   "epoch": 98,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 185.791889014
+  },
+  {
+   "id": 63,
+   "epoch": 98,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 62.021387675
+  },
+  {
+   "id": 64,
+   "epoch": 98,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 39.806722979
+  },
+  {
+   "id": 65,
+   "epoch": 102,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 74.696705265
+  },
+  {
+   "id": 66,
+   "epoch": 106,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 55.638185328
+  },
+  {
+   "id": 67,
+   "epoch": 106,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 172.824179143
+  },
+  {
+   "id": 68,
+   "epoch": 110,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 70.065524508
+  },
+  {
+   "id": 69,
+   "epoch": 110,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 101.564758168
+  },
+  {
+   "id": 70,
+   "epoch": 114,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 451.476557089
+  },
+  {
+   "id": 71,
+   "epoch": 114,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 1733.681697018
+  },
+  {
+   "id": 72,
+   "epoch": 114,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 2425.690179968
+  },
+  {
+   "id": 73,
+   "epoch": 114,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 672.203138354
+  },
+  {
+   "id": 74,
+   "epoch": 114,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 379.069626282
+  },
+  {
+   "id": 75,
+   "epoch": 114,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 78.094729927
+  },
+  {
+   "id": 76,
+   "epoch": 118,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 547.898973068
+  },
+  {
+   "id": 77,
+   "epoch": 118,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 324.874940343
+  },
+  {
+   "id": 78,
+   "epoch": 118,
+   "peril": 1,
+   "perilName": "GULF_WIND",
+   "subjectLoss": 431.609139902
+  },
+  {
+   "id": 79,
+   "epoch": 122,
+   "peril": 0,
+   "perilName": "FL_WIND",
+   "subjectLoss": 192.633794554
+  },
+  {
+   "id": 80,
+   "epoch": 126,
+   "peril": 2,
+   "perilName": "EU_WIND",
+   "subjectLoss": 253.368109075
+  }
+ ],
+ "forecasts": [
+  {
+   "epoch": 30,
+   "predictedBps": 293,
+   "confidenceBps": 6572,
+   "rationale": "Event quarter. 8 active layers, 2,930,860 USDC at risk, top-region concentration 61%. Expected loss 2.93% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 31,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 32,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 33,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 34,
+   "predictedBps": 287,
+   "confidenceBps": 6534,
+   "rationale": "Event quarter. 8 active layers, 3,092,297 USDC at risk, top-region concentration 62%. Expected loss 2.87% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 35,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 36,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 37,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 38,
+   "predictedBps": 196,
+   "confidenceBps": 6470,
+   "rationale": "Event quarter. 7 active layers, 3,227,130 USDC at risk, top-region concentration 63%. Expected loss 1.96% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 39,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 40,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 41,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 42,
+   "predictedBps": 136,
+   "confidenceBps": 6428,
+   "rationale": "Event quarter. 8 active layers, 3,320,322 USDC at risk, top-region concentration 64%. Expected loss 1.36% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 43,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 44,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 46,
+   "predictedBps": 215,
+   "confidenceBps": 6480,
+   "rationale": "Event quarter. 9 active layers, 3,205,309 USDC at risk, top-region concentration 63%. Expected loss 2.15% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 47,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 48,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 49,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 50,
+   "predictedBps": 207,
+   "confidenceBps": 6465,
+   "rationale": "Event quarter. 8 active layers, 3,237,788 USDC at risk, top-region concentration 63%. Expected loss 2.07% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 51,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 52,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 53,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 54,
+   "predictedBps": 182,
+   "confidenceBps": 6432,
+   "rationale": "Event quarter. 6 active layers, 3,311,106 USDC at risk, top-region concentration 64%. Expected loss 1.82% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 55,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 56,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 57,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 58,
+   "predictedBps": 152,
+   "confidenceBps": 6404,
+   "rationale": "Event quarter. 7 active layers, 3,378,216 USDC at risk, top-region concentration 65%. Expected loss 1.52% of NAV.",
+   "realizedBps": 6,
+   "resolved": true
+  },
+  {
+   "epoch": 59,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 60,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 61,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 62,
+   "predictedBps": 138,
+   "confidenceBps": 6381,
+   "rationale": "Event quarter. 7 active layers, 3,433,355 USDC at risk, top-region concentration 65%. Expected loss 1.38% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 63,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 64,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 65,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 66,
+   "predictedBps": 143,
+   "confidenceBps": 6371,
+   "rationale": "Event quarter. 7 active layers, 3,459,550 USDC at risk, top-region concentration 66%. Expected loss 1.43% of NAV.",
+   "realizedBps": 43,
+   "resolved": true
+  },
+  {
+   "epoch": 67,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 68,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 69,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 70,
+   "predictedBps": 139,
+   "confidenceBps": 6358,
+   "rationale": "Event quarter. 7 active layers, 3,492,241 USDC at risk, top-region concentration 66%. Expected loss 1.39% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 72,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 73,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 74,
+   "predictedBps": 77,
+   "confidenceBps": 6825,
+   "rationale": "Event quarter. 4 active layers, 2,181,657 USDC at risk, top-region concentration 54%. Expected loss 0.77% of NAV.",
+   "realizedBps": 199,
+   "resolved": true
+  },
+  {
+   "epoch": 75,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 76,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 77,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 78,
+   "predictedBps": 119,
+   "confidenceBps": 6576,
+   "rationale": "Event quarter. 5 active layers, 3,008,762 USDC at risk, top-region concentration 61%. Expected loss 1.19% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 79,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 80,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 81,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 82,
+   "predictedBps": 211,
+   "confidenceBps": 6336,
+   "rationale": "Event quarter. 6 active layers, 3,550,049 USDC at risk, top-region concentration 67%. Expected loss 2.11% of NAV.",
+   "realizedBps": 3329,
+   "resolved": true
+  },
+  {
+   "epoch": 83,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 84,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 85,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 86,
+   "predictedBps": 138,
+   "confidenceBps": 6501,
+   "rationale": "Event quarter. 6 active layers, 2,785,083 USDC at risk, top-region concentration 62%. Expected loss 1.38% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 88,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 89,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 90,
+   "predictedBps": 146,
+   "confidenceBps": 6823,
+   "rationale": "Event quarter. 5 active layers, 2,601,409 USDC at risk, top-region concentration 54%. Expected loss 1.46% of NAV.",
+   "realizedBps": 251,
+   "resolved": true
+  },
+  {
+   "epoch": 91,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 92,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 93,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 94,
+   "predictedBps": 132,
+   "confidenceBps": 6267,
+   "rationale": "Event quarter. 5 active layers, 2,689,441 USDC at risk, top-region concentration 68%. Expected loss 1.32% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 95,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 96,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 97,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 98,
+   "predictedBps": 277,
+   "confidenceBps": 6563,
+   "rationale": "Event quarter. 6 active layers, 3,034,067 USDC at risk, top-region concentration 61%. Expected loss 2.77% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 99,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 100,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 101,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 102,
+   "predictedBps": 125,
+   "confidenceBps": 6907,
+   "rationale": "Event quarter. 5 active layers, 2,486,534 USDC at risk, top-region concentration 52%. Expected loss 1.25% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 103,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 104,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 105,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 106,
+   "predictedBps": 137,
+   "confidenceBps": 6464,
+   "rationale": "Event quarter. 6 active layers, 3,239,673 USDC at risk, top-region concentration 63%. Expected loss 1.37% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 107,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 108,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 109,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 110,
+   "predictedBps": 218,
+   "confidenceBps": 6494,
+   "rationale": "Event quarter. 6 active layers, 3,173,271 USDC at risk, top-region concentration 63%. Expected loss 2.18% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 111,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 112,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 113,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 114,
+   "predictedBps": 275,
+   "confidenceBps": 6596,
+   "rationale": "Event quarter. 6 active layers, 2,971,112 USDC at risk, top-region concentration 60%. Expected loss 2.75% of NAV.",
+   "realizedBps": 3757,
+   "resolved": true
+  },
+  {
+   "epoch": 115,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 116,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 117,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 118,
+   "predictedBps": 267,
+   "confidenceBps": 6822,
+   "rationale": "Event quarter. 6 active layers, 2,603,694 USDC at risk, top-region concentration 54%. Expected loss 2.67% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 119,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 120,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 121,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 122,
+   "predictedBps": 273,
+   "confidenceBps": 6866,
+   "rationale": "Event quarter. 6 active layers, 2,541,506 USDC at risk, top-region concentration 53%. Expected loss 2.73% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 123,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 124,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 125,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 126,
+   "predictedBps": 174,
+   "confidenceBps": 6592,
+   "rationale": "Event quarter. 6 active layers, 2,866,452 USDC at risk, top-region concentration 60%. Expected loss 1.74% of NAV.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 127,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": null,
+   "resolved": false
+  }
+ ],
+ "commits": [
+  {
+   "epoch": 1,
+   "layerId": 4,
+   "linePercent": 100.0,
+   "collateral": 700000.0
+  },
+  {
+   "epoch": 1,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 2,
+   "layerId": 0,
+   "linePercent": 100.0,
+   "collateral": 725000.0
+  },
+  {
+   "epoch": 2,
+   "layerId": 6,
+   "linePercent": 94.54,
+   "collateral": 259985.0
+  },
+  {
+   "epoch": 2,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 3,
+   "layerId": 2,
+   "linePercent": 15.89,
+   "collateral": 299526.5
+  },
+  {
+   "epoch": 3,
+   "layerId": 5,
+   "linePercent": 0.01,
+   "collateral": 131.6
+  },
+  {
+   "epoch": 6,
+   "layerId": 3,
+   "linePercent": 100.0,
+   "collateral": 516000.0
+  },
+  {
+   "epoch": 6,
+   "layerId": 4,
+   "linePercent": 74.72,
+   "collateral": 523040.0
+  },
+  {
+   "epoch": 6,
+   "layerId": 7,
+   "linePercent": 16.63,
+   "collateral": 55544.2
+  },
+  {
+   "epoch": 7,
+   "layerId": 0,
+   "linePercent": 2.22,
+   "collateral": 16095.0
+  },
+  {
+   "epoch": 7,
+   "layerId": 1,
+   "linePercent": 2.95,
+   "collateral": 28880.5
+  },
+  {
+   "epoch": 7,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 7,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 8,
+   "layerId": 2,
+   "linePercent": 16.06,
+   "collateral": 302731.0
+  },
+  {
+   "epoch": 11,
+   "layerId": 4,
+   "linePercent": 100.0,
+   "collateral": 700000.0
+  },
+  {
+   "epoch": 11,
+   "layerId": 5,
+   "linePercent": 30.41,
+   "collateral": 400195.6
+  },
+  {
+   "epoch": 11,
+   "layerId": 7,
+   "linePercent": 33.92,
+   "collateral": 113292.8
+  },
+  {
+   "epoch": 12,
+   "layerId": 1,
+   "linePercent": 8.33,
+   "collateral": 81550.7
+  },
+  {
+   "epoch": 12,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 12,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 13,
+   "layerId": 3,
+   "linePercent": 59.42,
+   "collateral": 306607.2
+  },
+  {
+   "epoch": 16,
+   "layerId": 0,
+   "linePercent": 42.19,
+   "collateral": 305877.5
+  },
+  {
+   "epoch": 16,
+   "layerId": 2,
+   "linePercent": 6.76,
+   "collateral": 127426.0
+  },
+  {
+   "epoch": 16,
+   "layerId": 4,
+   "linePercent": 100.0,
+   "collateral": 700000.0
+  },
+  {
+   "epoch": 16,
+   "layerId": 7,
+   "linePercent": 48.61,
+   "collateral": 162357.4
+  },
+  {
+   "epoch": 17,
+   "layerId": 1,
+   "linePercent": 12.03,
+   "collateral": 117773.7
+  },
+  {
+   "epoch": 17,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 17,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 18,
+   "layerId": 3,
+   "linePercent": 64.07,
+   "collateral": 330601.2
+  },
+  {
+   "epoch": 21,
+   "layerId": 2,
+   "linePercent": 63.04,
+   "collateral": 1188304.0
+  },
+  {
+   "epoch": 21,
+   "layerId": 7,
+   "linePercent": 71.65,
+   "collateral": 239311.0
+  },
+  {
+   "epoch": 22,
+   "layerId": 1,
+   "linePercent": 15.95,
+   "collateral": 156150.5
+  },
+  {
+   "epoch": 22,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 22,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 23,
+   "layerId": 4,
+   "linePercent": 51.06,
+   "collateral": 357420.0
+  },
+  {
+   "epoch": 26,
+   "layerId": 0,
+   "linePercent": 100.0,
+   "collateral": 725000.0
+  },
+  {
+   "epoch": 26,
+   "layerId": 3,
+   "linePercent": 1.61,
+   "collateral": 8307.6
+  },
+  {
+   "epoch": 26,
+   "layerId": 5,
+   "linePercent": 36.6,
+   "collateral": 481656.0
+  },
+  {
+   "epoch": 26,
+   "layerId": 7,
+   "linePercent": 89.94,
+   "collateral": 300399.6
+  },
+  {
+   "epoch": 27,
+   "layerId": 1,
+   "linePercent": 19.92,
+   "collateral": 195016.8
+  },
+  {
+   "epoch": 27,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 27,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 28,
+   "layerId": 4,
+   "linePercent": 52.64,
+   "collateral": 368480.0
+  },
+  {
+   "epoch": 31,
+   "layerId": 0,
+   "linePercent": 100.0,
+   "collateral": 725000.0
+  },
+  {
+   "epoch": 31,
+   "layerId": 3,
+   "linePercent": 15.88,
+   "collateral": 81940.8
+  },
+  {
+   "epoch": 31,
+   "layerId": 5,
+   "linePercent": 36.8,
+   "collateral": 484288.0
+  },
+  {
+   "epoch": 31,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 32,
+   "layerId": 2,
+   "linePercent": 12.48,
+   "collateral": 235248.0
+  },
+  {
+   "epoch": 32,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 32,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 33,
+   "layerId": 4,
+   "linePercent": 54.26,
+   "collateral": 379820.0
+  },
+  {
+   "epoch": 36,
+   "layerId": 5,
+   "linePercent": 100.0,
+   "collateral": 1316000.0
+  },
+  {
+   "epoch": 36,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 37,
+   "layerId": 0,
+   "linePercent": 45.9,
+   "collateral": 332775.0
+  },
+  {
+   "epoch": 37,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 37,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 38,
+   "layerId": 1,
+   "linePercent": 40.07,
+   "collateral": 392285.3
+  },
+  {
+   "epoch": 38,
+   "layerId": 4,
+   "linePercent": 0.01,
+   "collateral": 70.0
+  },
+  {
+   "epoch": 41,
+   "layerId": 5,
+   "linePercent": 100.0,
+   "collateral": 1316000.0
+  },
+  {
+   "epoch": 41,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 42,
+   "layerId": 0,
+   "linePercent": 0.02,
+   "collateral": 145.0
+  },
+  {
+   "epoch": 42,
+   "layerId": 2,
+   "linePercent": 22.59,
+   "collateral": 425821.5
+  },
+  {
+   "epoch": 42,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 42,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 43,
+   "layerId": 1,
+   "linePercent": 41.44,
+   "collateral": 405697.6
+  },
+  {
+   "epoch": 46,
+   "layerId": 3,
+   "linePercent": 68.95,
+   "collateral": 355782.0
+  },
+  {
+   "epoch": 46,
+   "layerId": 4,
+   "linePercent": 100.0,
+   "collateral": 700000.0
+  },
+  {
+   "epoch": 46,
+   "layerId": 5,
+   "linePercent": 10.02,
+   "collateral": 131863.2
+  },
+  {
+   "epoch": 46,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 47,
+   "layerId": 2,
+   "linePercent": 23.9,
+   "collateral": 450515.0
+  },
+  {
+   "epoch": 47,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 47,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 48,
+   "layerId": 1,
+   "linePercent": 42.25,
+   "collateral": 413627.5
+  },
+  {
+   "epoch": 51,
+   "layerId": 5,
+   "linePercent": 87.8,
+   "collateral": 1155448.0
+  },
+  {
+   "epoch": 51,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 52,
+   "layerId": 0,
+   "linePercent": 71.58,
+   "collateral": 518955.0
+  },
+  {
+   "epoch": 52,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 52,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 53,
+   "layerId": 2,
+   "linePercent": 23.91,
+   "collateral": 450703.5
+  },
+  {
+   "epoch": 56,
+   "layerId": 5,
+   "linePercent": 84.6,
+   "collateral": 1113336.0
+  },
+  {
+   "epoch": 56,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 57,
+   "layerId": 1,
+   "linePercent": 39.02,
+   "collateral": 382005.8
+  },
+  {
+   "epoch": 57,
+   "layerId": 3,
+   "linePercent": 47.05,
+   "collateral": 242778.0
+  },
+  {
+   "epoch": 57,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 57,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 58,
+   "layerId": 2,
+   "linePercent": 24.09,
+   "collateral": 454096.5
+  },
+  {
+   "epoch": 61,
+   "layerId": 0,
+   "linePercent": 13.55,
+   "collateral": 98237.5
+  },
+  {
+   "epoch": 61,
+   "layerId": 5,
+   "linePercent": 78.14,
+   "collateral": 1028322.4
+  },
+  {
+   "epoch": 61,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 62,
+   "layerId": 1,
+   "linePercent": 68.1,
+   "collateral": 666699.0
+  },
+  {
+   "epoch": 62,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 62,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 63,
+   "layerId": 2,
+   "linePercent": 24.39,
+   "collateral": 459751.5
+  },
+  {
+   "epoch": 66,
+   "layerId": 3,
+   "linePercent": 31.18,
+   "collateral": 160888.8
+  },
+  {
+   "epoch": 66,
+   "layerId": 5,
+   "linePercent": 74.94,
+   "collateral": 986210.4
+  },
+  {
+   "epoch": 66,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 67,
+   "layerId": 1,
+   "linePercent": 67.03,
+   "collateral": 656223.7
+  },
+  {
+   "epoch": 67,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 67,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 68,
+   "layerId": 2,
+   "linePercent": 26.68,
+   "collateral": 502918.0
+  },
+  {
+   "epoch": 72,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 72,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 73,
+   "layerId": 2,
+   "linePercent": 52.82,
+   "collateral": 995657.0
+  },
+  {
+   "epoch": 74,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 75,
+   "layerId": 5,
+   "linePercent": 66.34,
+   "collateral": 873034.4
+  },
+  {
+   "epoch": 77,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 77,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 78,
+   "layerId": 1,
+   "linePercent": 97.01,
+   "collateral": 949727.9
+  },
+  {
+   "epoch": 79,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 80,
+   "layerId": 0,
+   "linePercent": 100.0,
+   "collateral": 725000.0
+  },
+  {
+   "epoch": 81,
+   "layerId": 5,
+   "linePercent": 52.38,
+   "collateral": 689320.8
+  },
+  {
+   "epoch": 82,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 82,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 83,
+   "layerId": 2,
+   "linePercent": 39.17,
+   "collateral": 738354.5
+  },
+  {
+   "epoch": 84,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 85,
+   "layerId": 4,
+   "linePercent": 51.51,
+   "collateral": 360570.0
+  },
+  {
+   "epoch": 86,
+   "layerId": 5,
+   "linePercent": 48.68,
+   "collateral": 640628.8
+  },
+  {
+   "epoch": 88,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 88,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 89,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 90,
+   "layerId": 1,
+   "linePercent": 79.14,
+   "collateral": 774780.6
+  },
+  {
+   "epoch": 91,
+   "layerId": 5,
+   "linePercent": 57.86,
+   "collateral": 761437.6
+  },
+  {
+   "epoch": 92,
+   "layerId": 2,
+   "linePercent": 15.98,
+   "collateral": 301223.0
+  },
+  {
+   "epoch": 93,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 94,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 95,
+   "layerId": 4,
+   "linePercent": 72.3,
+   "collateral": 506100.0
+  },
+  {
+   "epoch": 96,
+   "layerId": 1,
+   "linePercent": 67.73,
+   "collateral": 663076.7
+  },
+  {
+   "epoch": 97,
+   "layerId": 0,
+   "linePercent": 93.64,
+   "collateral": 678890.0
+  },
+  {
+   "epoch": 97,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 98,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 99,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 100,
+   "layerId": 4,
+   "linePercent": 84.97,
+   "collateral": 594790.0
+  },
+  {
+   "epoch": 101,
+   "layerId": 2,
+   "linePercent": 37.44,
+   "collateral": 705744.0
+  },
+  {
+   "epoch": 102,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 103,
+   "layerId": 1,
+   "linePercent": 71.97,
+   "collateral": 704586.3
+  },
+  {
+   "epoch": 103,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 104,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 105,
+   "layerId": 5,
+   "linePercent": 49.76,
+   "collateral": 654841.6
+  },
+  {
+   "epoch": 106,
+   "layerId": 2,
+   "linePercent": 36.83,
+   "collateral": 694245.5
+  },
+  {
+   "epoch": 107,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 108,
+   "layerId": 1,
+   "linePercent": 72.21,
+   "collateral": 706935.9
+  },
+  {
+   "epoch": 108,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 109,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 110,
+   "layerId": 0,
+   "linePercent": 80.84,
+   "collateral": 586090.0
+  },
+  {
+   "epoch": 111,
+   "layerId": 3,
+   "linePercent": 97.51,
+   "collateral": 503151.6
+  },
+  {
+   "epoch": 112,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 113,
+   "layerId": 4,
+   "linePercent": 99.41,
+   "collateral": 695870.0
+  },
+  {
+   "epoch": 113,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 114,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 115,
+   "layerId": 0,
+   "linePercent": 83.42,
+   "collateral": 604795.0
+  },
+  {
+   "epoch": 115,
+   "layerId": 2,
+   "linePercent": 32.08,
+   "collateral": 604708.0
+  },
+  {
+   "epoch": 116,
+   "layerId": 5,
+   "linePercent": 15.82,
+   "collateral": 208191.2
+  },
+  {
+   "epoch": 117,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 118,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
+  },
+  {
+   "epoch": 119,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 120,
+   "layerId": 0,
+   "linePercent": 25.86,
+   "collateral": 187485.0
+  },
+  {
+   "epoch": 120,
+   "layerId": 3,
+   "linePercent": 100.0,
+   "collateral": 516000.0
+  },
+  {
+   "epoch": 121,
+   "layerId": 2,
+   "linePercent": 34.59,
+   "collateral": 652021.5
+  },
+  {
+   "epoch": 122,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  },
+  {
+   "epoch": 123,
+   "layerId": 1,
+   "linePercent": 36.34,
+   "collateral": 355768.6
+  },
+  {
+   "epoch": 123,
+   "layerId": 6,
+   "linePercent": 83.59,
+   "collateral": 229872.5
+  },
+  {
+   "epoch": 124,
+   "layerId": 8,
+   "linePercent": 100.0,
+   "collateral": 577000.0
+  },
+  {
+   "epoch": 125,
+   "layerId": 5,
+   "linePercent": 52.19,
+   "collateral": 686820.4
+  },
+  {
+   "epoch": 126,
+   "layerId": 4,
+   "linePercent": 97.57,
+   "collateral": 682990.0
+  },
+  {
+   "epoch": 127,
+   "layerId": 7,
+   "linePercent": 100.0,
+   "collateral": 334000.0
+  }
+ ]
+}

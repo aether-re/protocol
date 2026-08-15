@@ -34,6 +34,14 @@ from market import (
     BPS, SCALE, MIN_BUFFER_BPS, MAX_JUNIOR_BPS, MAX_REGION_BPS, MAX_LINE_BPS,
     TERM_EPOCHS, EPOCHS_PER_YEAR, LayerDef, load_layers,
 )
+
+# Layer limits span 275 to 1,885 notional, so a full line on the largest is
+# roughly seven times a full line on the smallest. Capping only the share of
+# the *layer* therefore lets one oversized position dominate the book:
+# GULF_WIND_SENIOR at a 100% line came to 39% of NAV on its own, which held
+# US Southeast above its regional cap no matter what else the agent did.
+# Real ILS books cap exposure as a share of the fund, not of the position.
+MAX_LAYER_NAV_BPS = 2000        # no single layer above 20% of NAV
 import math
 
 RPC = "https://testrpc.xlayer.tech/terigon"
@@ -61,7 +69,7 @@ def load_env() -> dict:
     if not pk:
         sys.exit("PRIVATE_KEY not set. Run: export PRIVATE_KEY=0x...")
     env["PRIVATE_KEY"] = pk
-    for required in ("SETTLEMENT", "ORACLE", "REGISTRY", "VAULT", "SEED"):
+    for required in ("SETTLEMENT", "ORACLE", "REGISTRY", "VAULT", "AGENTLOG", "SEED"):
         if required not in env:
             sys.exit(f"{required} missing from contracts/.env or contracts/.seed")
     return env
@@ -69,7 +77,7 @@ def load_env() -> dict:
 
 def load_abis() -> dict:
     out = {}
-    for name in ("Settlement", "EventOracle", "RiskLayerRegistry", "AgentVault"):
+    for name in ("Settlement", "EventOracle", "RiskLayerRegistry", "AgentVault", "AgentLog"):
         p = ROOT / "contracts" / "out" / f"{name}.sol" / f"{name}.json"
         out[name] = json.loads(p.read_text())["abi"]
     return out
@@ -113,27 +121,69 @@ def choose_lines(defs_by_id, layers_on_chain, nav, idle, year, dislocation_fn):
         region_share = by_region.get(d.region_id, 0) / deployed
         return (margin / math.sqrt(d.technical_el)) * (1.0 - 0.8 * region_share)
 
+    # Concentration caps are shares of *final* deployed capital, which is not
+    # known until allocation finishes. Sizing them against deployed + budget
+    # assumes the whole budget gets used; when it does not, the realised share
+    # lands above the cap. So: allocate greedily, then trim in a second pass
+    # against the total actually committed.
+    MIN_LINE_BPS = 1000          # skip dust: sub-10% lines waste a renewal slot
     total_after = deployed + budget
-    out = {}
+    out: dict[int, int] = {}
+    added: dict[int, int] = {}
+
     for lid in sorted(candidates, key=score, reverse=True):
         if score(lid) <= 0:
             continue
         d = defs_by_id[lid]
         lim = layers_on_chain[lid]["exhaustion"] - layers_on_chain[lid]["attachment"]
-        caps = [budget, (lim * MAX_LINE_BPS) // BPS]
+        caps = [budget, (lim * MAX_LINE_BPS) // BPS,
+                (nav * MAX_LAYER_NAV_BPS) // BPS]
         if d.tranche == 0:
             caps.append(max(0, (total_after * MAX_JUNIOR_BPS) // BPS - junior))
         caps.append(max(0, (total_after * MAX_REGION_BPS) // BPS - by_region.get(d.region_id, 0)))
+        # A region already at or over its cap takes no new money at all, even
+        # if the projection says there is headroom. Locked positions cannot be
+        # unwound mid-term, so the only lever is refusing to add to them.
+        if by_region.get(d.region_id, 0) >= (deployed * MAX_REGION_BPS) // BPS:
+            caps.append(0)
         collateral = max(0, min(caps))
         line_bps = min(MAX_LINE_BPS, (collateral * BPS) // lim) if lim else 0
-        if line_bps < 100:          # skip dust: sub-1% lines waste a renewal slot
+        if line_bps < MIN_LINE_BPS:
             continue
         actual = (lim * line_bps) // BPS
         out[lid] = line_bps
+        added[lid] = actual
         budget -= actual
         by_region[d.region_id] = by_region.get(d.region_id, 0) + actual
         if d.tranche == 0:
             junior += actual
+
+    # second pass: enforce the region cap against what was really committed
+    final_total = deployed + sum(added.values())
+    if final_total > 0:
+        allowed = (final_total * MAX_REGION_BPS) // BPS
+        for region, held in list(by_region.items()):
+            excess = held - allowed
+            if excess <= 0:
+                continue
+            # shed from this region's new commitments, weakest score first
+            for lid in sorted((k for k in list(added)
+                               if defs_by_id[k].region_id == region), key=score):
+                if excess <= 0:
+                    break
+                lim = layers_on_chain[lid]["exhaustion"] - layers_on_chain[lid]["attachment"]
+                cut = min(added[lid], excess)
+                remaining = added[lid] - cut
+                new_bps = (remaining * BPS) // lim if lim else 0
+                excess -= cut
+                if new_bps < MIN_LINE_BPS:
+                    by_region[region] -= added[lid]
+                    out.pop(lid, None)
+                    added.pop(lid, None)
+                else:
+                    by_region[region] -= added[lid] - (lim * new_bps) // BPS
+                    out[lid] = new_bps
+                    added[lid] = (lim * new_bps) // BPS
     return out
 
 
@@ -153,6 +203,7 @@ class Keeper:
         self.oracle = self.w3.eth.contract(A(env["ORACLE"]), abi=abis["EventOracle"])
         self.registry = self.w3.eth.contract(A(env["REGISTRY"]), abi=abis["RiskLayerRegistry"])
         self.vault = self.w3.eth.contract(A(env["VAULT"]), abi=abis["AgentVault"])
+        self.log = self.w3.eth.contract(A(env["AGENTLOG"]), abi=abis["AgentLog"])
 
         self.defs = load_layers(str(ROOT / "engine" / "layer_table.json"))
         self.defs_by_id = {d.layer_id: d for d in self.defs}
@@ -201,6 +252,58 @@ class Keeper:
         from simulator import dislocation
         return dislocation(self.seed, MVP_PARAMS, year, layer_id)
 
+
+    def forecast_for(self, epoch: int, layers: dict, nav: int):
+        """Expected loss for `epoch`, in bps of current NAV.
+
+        Catastrophes only land in Q3 of each simulated year, so three epochs
+        in four carry a genuine expectation of zero. Those forecasts are
+        trivially correct; the signal lives in the event quarters, which is
+        what the calibration chart plots.
+
+        For an event quarter: sum over active layers of the layer's calibrated
+        annual expected loss, scaled by the line taken and the collateral at
+        risk. Confidence falls as exposure concentrates in one region.
+        """
+        if epoch % EPOCHS_PER_YEAR != EVENT_QUARTER:
+            return 0, 9000, "Non-event quarter: no catastrophe exposure expected."
+
+        expected = 0
+        by_region: dict[int, int] = {}
+        deployed = 0
+        for lid, l in layers.items():
+            if l["state"] != 0:          # ACTIVE only
+                continue
+            d = self.defs_by_id[lid]
+            lim = l["exhaustion"] - l["attachment"]
+            at_risk = (lim * l["linePercent"]) // BPS
+            expected += int(d.technical_el * at_risk)
+            deployed += l["collateralRemaining"]
+            by_region[d.region_id] = by_region.get(d.region_id, 0) + l["collateralRemaining"]
+
+        if nav == 0:
+            return 0, 5000, "No capital deployed."
+
+        bps = min(65535, (expected * BPS) // nav)
+
+        top_region = max(by_region.values()) / deployed if deployed else 0
+        confidence = int(9000 - 4000 * top_region)
+        confidence = max(2000, min(9500, confidence))
+
+        n_active = sum(1 for l in layers.values() if l["state"] == 0)
+        rationale = (
+            f"Event quarter. {n_active} active layers, "
+            f"{deployed/1e6:,.0f} USDC at risk, "
+            f"top-region concentration {top_region:.0%}. "
+            f"Expected loss {bps/100:.2f}% of NAV."
+        )
+        return bps, confidence, rationale[:200]
+
+    def realized_bps(self, nav_before: int, losses: int) -> int:
+        if nav_before == 0:
+            return 0
+        return min(4294967295, (losses * BPS) // nav_before)
+
     def status(self):
         epoch = self.settlement.functions.epoch().call()
         nav = self.vault.functions.totalAssets().call()
@@ -226,7 +329,18 @@ class Keeper:
                 print(f"  event: peril {p}  subject loss {s/SCALE:,.0f} notional")
             self.send(self.oracle.functions.publish(epoch, perils, losses), "publish")
 
-        self.send(self.settlement.functions.settleEpoch(perils, losses), "settleEpoch")
+        nav_before = self.vault.functions.totalAssets().call()
+        receipt = self.send(self.settlement.functions.settleEpoch(perils, losses), "settleEpoch")
+
+        # Resolve this epoch's forecast against what actually happened.
+        settled = self.settlement.events.EpochSettled().process_receipt(
+            receipt, errors=__import__("web3").logs.DISCARD)
+        actual_losses = settled[0]["args"]["losses"] if settled else 0
+        prior = self.log.functions.get(epoch).call()
+        if prior[3] and not prior[4]:          # published, not resolved
+            r = self.realized_bps(nav_before, actual_losses)
+            self.send(self.log.functions.resolveForecast(epoch, r), "resolve")
+            print(f"  forecast {prior[0]/100:.2f}%  realized {r/100:.2f}%")
 
         nav = self.vault.functions.totalAssets().call()
         idle = self.vault.functions.idleAssets().call()
@@ -244,7 +358,18 @@ class Keeper:
         else:
             print("  no renewals this epoch")
 
-        print(f"  NAV {nav/1e6:,.2f} USDC")
+        layers_after = self.read_layers()
+        nav_after = self.vault.functions.totalAssets().call()
+        nxt = epoch + 1
+        if not self.log.functions.get(nxt).call()[3]:
+            el_bps, conf, why = self.forecast_for(nxt, layers_after, nav_after)
+            self.send(
+                self.log.functions.publishForecast(nxt, el_bps, conf, why),
+                f"forecast e{nxt}",
+            )
+            print(f"  predicts {el_bps/100:.2f}% loss next epoch (conf {conf/100:.0f}%)")
+
+        print(f"  NAV {nav_after/1e6:,.2f} USDC")
 
 
 def main():
