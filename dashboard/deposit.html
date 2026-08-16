@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether Re: deposit</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+<script>
+/* Decide the connected state before first paint. Without this the page renders
+   the disconnected screen, then swaps once the async wallet check resolves,
+   which reads as a glitch when moving between pages. */
+if(sessionStorage.getItem("aether.connected")==="1")
+  document.documentElement.classList.add("pre-connected");
+</script>
+
+</head>
+<body>
+
+<header class="masthead"><div class="wrap">
+  <h1 class="wordmark">Aether Re</h1>
+  <nav class="sitenav">
+    <a href="./">Portfolio</a>
+    <a href="deposit.html" aria-current="page">Deposit</a>
+    <a href="position.html">Position</a>
+  </nav>
+  <span class="acct">
+    <span id="addr" hidden></span>
+    <button class="linkbtn" id="disconnect" hidden>Disconnect</button>
+  </span>
+</div></header>
+
+<div class="disclosure"><div class="wrap">
+  <strong>Test network only.</strong> This vault holds a mock USDC with no value and the
+  catastrophes driving its returns are simulated. Nothing here is an investment and no real
+  money can be deposited.
+</div></div>
+
+<main>
+<section><div class="wrap">
+  <p class="eyebrow">Deposit</p>
+  <h2>Put capital under the agent</h2>
+  <p class="lede">Deposit mock USDC and the agent manages it alongside everything else in the
+    vault. You receive shares whose value moves as premium accrues and as catastrophes erode
+    collateral, so <b>your balance can fall</b>. That is what backing reinsurance means.</p>
+
+  <div class="step">
+    <span class="num">Step 1</span>
+    <h3>Connect a wallet</h3>
+    <p>OKX Wallet or any injected wallet. The page offers to add X Layer testnet if you do not
+      already have it.</p>
+    <div class="row">
+      <button class="act" id="connect">Connect wallet</button>
+      <span class="mono-sm" id="addr2"></span>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="num">Step 2</span>
+    <h3>Get mock USDC</h3>
+    <p>An open faucet mints 10,000 to whoever asks. A test token with no value. Gas comes from
+      the <a href="https://www.okx.com/xlayer/faucet" target="_blank" rel="noopener">X Layer faucet</a>.</p>
+    <div class="row">
+      <button class="act" id="faucet" disabled>Claim 10,000 USDC</button>
+      <span class="mono-sm" id="bal"></span>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="num">Step 3</span>
+    <h3>Deposit</h3>
+    <p>Approve the vault, then deposit. Two transactions the first time, one after that.</p>
+    <div class="field">
+      <input id="amount" type="text" inputmode="decimal" placeholder="1000" aria-label="Amount to deposit">
+      <button class="act ghost" id="max">Max</button>
+      <button class="act" id="deposit" disabled>Deposit</button>
+    </div>
+  </div>
+
+  <div id="msg"></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  Aether Re · X Layer testnet, chain 1952 ·
+  <a href="https://github.com/aether-re/protocol" target="_blank" rel="noopener">source</a>
+</div></footer>
+
+<script type="module">
+import { $, fmt, parseAmt, wallet, say, run, explain, ethers, VAULT } from "./shared.js";
+
+let timer;
+
+async function refresh(){
+  if(!wallet.account) return;
+  const s = await wallet.snapshot();
+  $("#bal").textContent =
+    `${fmt(s.bal)} USDC · ${Number(ethers.formatEther(s.okb)).toFixed(4)} OKB for gas`;
+  window._s = s;
+}
+
+function onConnected(){
+  document.documentElement.classList.add("pre-connected");
+  $("#addr").textContent  = wallet.short();
+  $("#addr2").textContent = wallet.short();
+  $("#addr").hidden = false;
+  $("#disconnect").hidden = false;
+  $("#connect").textContent = "Connected";
+  $("#connect").disabled = true;
+  $("#faucet").disabled = false;
+  $("#deposit").disabled = false;
+  refresh();
+  timer = setInterval(() => refresh().catch(()=>{}), 20000);
+}
+
+$("#connect").onclick = async () => {
+  try{ say(""); await wallet.connect(); onConnected(); }
+  catch(e){ say(explain(e),"err"); }
+};
+
+$("#disconnect").onclick = () => {
+  clearInterval(timer);
+  wallet.disconnect();
+  document.documentElement.classList.remove("pre-connected");
+  $("#addr").hidden = true;
+  $("#disconnect").hidden = true;
+  $("#addr2").textContent = "";
+  $("#bal").textContent = "";
+  $("#connect").textContent = "Connect wallet";
+  $("#connect").disabled = false;
+  $("#faucet").disabled = true;
+  $("#deposit").disabled = true;
+  say("Disconnected from this page. Your wallet extension may still list the site as connected; remove it there to revoke fully.");
+};
+
+$("#faucet").onclick = () => run("Faucet claim", () => wallet.usdc.faucet(), refresh);
+$("#max").onclick = () => { if(window._s) $("#amount").value = (Number(window._s.bal)/1e6).toFixed(2); };
+
+$("#deposit").onclick = async () => {
+  let amount;
+  try{ amount = parseAmt($("#amount").value); }catch{ return say("Enter a valid amount.","err"); }
+  if(amount <= 0n) return say("Enter an amount above zero.","err");
+  if(amount > window._s.bal)
+    return say("More than your USDC balance. Claim from the faucet first.","err");
+
+  if(await wallet.usdc.allowance(wallet.account, VAULT) < amount){
+    const ok = await run("Approval", () => wallet.usdc.approve(VAULT, amount));
+    if(!ok) return;
+    if(await wallet.usdc.allowance(wallet.account, VAULT) < amount) return;
+  }
+  const done = await run("Deposit",
+    () => wallet.vault.deposit(amount, wallet.account), refresh);
+  if(done){
+    $("#amount").value = "";
+    say('Deposit confirmed. <a href="position.html">See your position</a>.',"ok");
+  }
+};
+
+if(window.ethereum){
+  window.ethereum.on?.("accountsChanged", () => location.reload());
+  window.ethereum.on?.("chainChanged",   () => location.reload());
+}
+wallet.resume().then(a => { if(a) onConnected(); }).catch(()=>{});
+</script>
+</body>
+</html>

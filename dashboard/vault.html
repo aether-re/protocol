@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether Re: your position</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ground:#F5F2EC; --surface:#EFEBE3; --surface-2:#E7E2D8;
+  --rule:#DAD5CA; --rule-strong:#C2BBAD;
+  --text:#22333F; --muted:#6E7D88; --dim:#9AA5AD;
+  --safe:#5E8F82; --exhausted:#A8524C; --agent:#3E6B7E;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --display:"Instrument Serif",Georgia,serif;
+  --sans:"Inter Tight","Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--text);
+  font-family:var(--mono);font-size:13px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--agent);text-decoration:none;border-bottom:1px solid rgba(62,107,126,.35)}
+a:hover{border-bottom-color:var(--agent)}
+:focus-visible{outline:2px solid var(--agent);outline-offset:2px}
+.wrap{max-width:780px;margin:0 auto;padding:0 24px}
+
+.masthead{border-bottom:1px solid var(--rule-strong)}
+.masthead .wrap{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;padding:20px 24px 16px}
+.wordmark{font-family:var(--sans);font-weight:600;font-size:15px;
+  letter-spacing:.24em;text-transform:uppercase;margin:0}
+.wordmark span{color:var(--muted);font-weight:400;letter-spacing:.14em}
+.acct{margin-left:auto;display:flex;align-items:center;gap:12px;font-size:11px;color:var(--muted)}
+.linkbtn{background:none;border:none;padding:0;font-family:var(--mono);font-size:11px;
+  color:var(--agent);cursor:pointer;border-bottom:1px solid rgba(62,107,126,.35)}
+.linkbtn:hover{border-bottom-color:var(--agent)}
+
+.disclosure{background:var(--surface);border-bottom:1px solid var(--rule);
+  font-size:11.5px;color:var(--muted)}
+.disclosure .wrap{padding:11px 24px}
+.disclosure strong{color:var(--text);font-weight:500}
+
+.tabs{border-bottom:1px solid var(--rule-strong)}
+.tabs .wrap{display:flex;gap:0;padding:0 24px}
+.tab{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;padding:16px 0;margin-right:30px;background:none;border:none;
+  border-bottom:2px solid transparent;color:var(--dim);cursor:pointer;margin-bottom:-1px}
+.tab[aria-selected="true"]{color:var(--text);border-bottom-color:var(--text)}
+
+section{padding:40px 0}
+.eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);
+  margin:0 0 10px;font-family:var(--sans);font-weight:500}
+h2{font-family:var(--display);font-weight:400;font-size:32px;margin:0 0 8px;line-height:1.1}
+.lede{color:var(--muted);margin:0 0 26px;font-size:12.5px;max-width:66ch}
+.lede b{color:var(--text);font-weight:500}
+
+.stats{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:24px}
+.stat{background:var(--ground);padding:16px 18px}
+.stat dt{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);
+  margin:0 0 9px;font-family:var(--sans);font-weight:500}
+.stat dd{margin:0;font-family:var(--display);font-size:28px;line-height:1}
+.stat .sub{font-size:11px;color:var(--muted);margin-top:7px}
+
+button.act{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.06em;
+  padding:11px 20px;border:1px solid var(--text);background:var(--text);color:var(--ground);
+  cursor:pointer;border-radius:2px}
+button.act:hover:not(:disabled){background:#2C4150;border-color:#2C4150}
+button.act:disabled{opacity:.35;cursor:not-allowed}
+button.ghost{background:none;color:var(--text);border-color:var(--rule-strong)}
+button.ghost:hover:not(:disabled){background:var(--surface-2);border-color:var(--text)}
+
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.field{display:flex;gap:10px;margin:14px 0;flex-wrap:wrap}
+input{font-family:var(--mono);font-size:14px;padding:11px 13px;border:1px solid var(--rule-strong);
+  background:var(--ground);color:var(--text);border-radius:2px;flex:1;min-width:150px}
+input:focus{outline:none;border-color:var(--agent)}
+
+.step{border:1px solid var(--rule);background:var(--surface);padding:20px;margin-bottom:14px}
+.step h3{font-family:var(--display);font-size:19px;font-weight:400;margin:0 0 4px}
+.step p{color:var(--muted);font-size:11.5px;margin:0 0 14px}
+.num{font-family:var(--sans);font-size:10px;letter-spacing:.18em;color:var(--dim);
+  text-transform:uppercase;display:block;margin-bottom:6px}
+
+.msg{padding:12px 14px;border:1px solid var(--rule-strong);background:var(--surface);
+  font-size:11.5px;margin-top:16px;word-break:break-word}
+.msg.err{border-color:var(--exhausted);color:var(--exhausted)}
+.msg.ok{border-color:var(--safe);color:var(--safe)}
+.empty{border:1px dashed var(--rule-strong);padding:30px 22px;text-align:center;color:var(--muted)}
+.mono-sm{font-size:11px;color:var(--muted)}
+footer{padding:32px 0 64px;color:var(--dim);font-size:11px;border-top:1px solid var(--rule)}
+[hidden]{display:none !important}
+
+@media(max-width:640px){
+  .wrap{padding:0 16px}
+  .masthead .wrap,.tabs .wrap,.disclosure .wrap{padding-left:16px;padding-right:16px}
+  .masthead .wrap{gap:8px;padding-top:14px;padding-bottom:12px}
+  .acct{margin-left:0;width:100%;justify-content:space-between}
+  .tab{margin-right:22px;font-size:11px;padding:14px 0}
+  section{padding:28px 0}
+  h2{font-size:25px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stat{padding:13px 14px}
+  .stat dd{font-size:23px}
+  .step{padding:16px}
+  .field{flex-direction:column;align-items:stretch}
+  .field input{min-width:0;width:100%}
+  .field button,.row button.act{width:100%}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="masthead"><div class="wrap">
+  <h1 class="wordmark">Aether Re <span>&nbsp;&nbsp;vault</span></h1>
+  <span class="acct">
+    <a href="./">Portfolio</a>
+    <span id="addr" hidden></span>
+    <button class="linkbtn" id="disconnect" hidden>Disconnect</button>
+  </span>
+</div></header>
+
+<div class="disclosure"><div class="wrap">
+  <strong>Test network only.</strong> This vault holds a mock USDC with no value, and the
+  catastrophes driving its returns are simulated. Nothing here is an investment and no real
+  money can be deposited. You will need a little testnet OKB for gas.
+</div></div>
+
+<div class="tabs"><div class="wrap" role="tablist">
+  <button class="tab" id="tabPos" role="tab" aria-selected="true" aria-controls="panelPos">Position</button>
+  <button class="tab" id="tabDep" role="tab" aria-selected="false" aria-controls="panelDep">Deposit</button>
+</div></div>
+
+<main>
+
+<section id="panelPos" role="tabpanel" aria-labelledby="tabPos"><div class="wrap">
+  <div id="posDisconnected">
+    <p class="eyebrow">Your position</p>
+    <h2>Nothing connected</h2>
+    <p class="lede">Connect a wallet to see whether you hold shares in the vault. Read-only:
+      connecting does not move anything.</p>
+    <button class="act" id="connect1">Connect wallet</button>
+  </div>
+
+  <div id="posConnected" hidden>
+    <p class="eyebrow">Your position</p>
+    <h2 id="posHeadline">No shares held</h2>
+    <p class="lede" id="posLede">You have not deposited yet. The Deposit tab will mint you some
+      mock USDC and put it under the agent's management.</p>
+
+    <dl class="stats">
+      <div class="stat"><dt>Shares</dt><dd id="shares">0</dd>
+        <div class="sub">vault tokens</div></div>
+      <div class="stat"><dt>Value</dt><dd id="value">0</dd>
+        <div class="sub">mock USDC</div></div>
+      <div class="stat"><dt>Share of vault</dt><dd id="pctVault">0%</dd>
+        <div class="sub" id="navSub">of total under management</div></div>
+      <div class="stat"><dt>Withdrawable now</dt><dd id="liq">0</dd>
+        <div class="sub">rest committed to layers</div></div>
+    </dl>
+
+    <div class="step">
+      <span class="num">Withdraw</span>
+      <h3>Redeem shares</h3>
+      <p>Served from idle capital only. Collateral committed to a live layer cannot be pulled
+        mid-term, which is true of real collateralised reinsurance, so a large redemption may
+        have to wait for those terms to end.</p>
+      <div class="field">
+        <input id="wAmount" type="text" inputmode="decimal" placeholder="500" aria-label="Amount to withdraw">
+        <button class="act ghost" id="wMax">Max</button>
+        <button class="act" id="withdraw">Withdraw</button>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section id="panelDep" role="tabpanel" aria-labelledby="tabDep" hidden><div class="wrap">
+  <p class="eyebrow">Deposit</p>
+  <h2>Put capital under the agent</h2>
+  <p class="lede">Deposit mock USDC and the agent manages it alongside everything else in the
+    vault. You receive shares whose value moves as premium accrues and as catastrophes erode
+    collateral, so <b>your balance can fall</b>. That is what backing reinsurance means.</p>
+
+  <div class="step">
+    <span class="num">Step 1</span>
+    <h3>Connect a wallet</h3>
+    <p>OKX Wallet or any injected wallet. The page offers to add X Layer testnet if you do
+      not have it.</p>
+    <div class="row">
+      <button class="act" id="connect2">Connect wallet</button>
+      <span class="mono-sm" id="addr2"></span>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="num">Step 2</span>
+    <h3>Get mock USDC</h3>
+    <p>An open faucet mints 10,000 to whoever asks. A test token, no value. Gas comes from the
+      <a href="https://www.okx.com/xlayer/faucet" target="_blank" rel="noopener">X Layer faucet</a>.</p>
+    <div class="row">
+      <button class="act" id="faucet" disabled>Claim 10,000 USDC</button>
+      <span class="mono-sm" id="walletBal"></span>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="num">Step 3</span>
+    <h3>Deposit</h3>
+    <p>Approve the vault, then deposit. Two transactions the first time, one after that.</p>
+    <div class="field">
+      <input id="amount" type="text" inputmode="decimal" placeholder="1000" aria-label="Amount to deposit">
+      <button class="act ghost" id="max">Max</button>
+      <button class="act" id="deposit" disabled>Deposit</button>
+    </div>
+  </div>
+</div></section>
+
+<div class="wrap"><div id="msg"></div></div>
+</main>
+
+<footer><div class="wrap">
+  Aether Re · X Layer testnet, chain 1952 ·
+  <a href="https://github.com/aether-re/protocol" target="_blank" rel="noopener">source</a>
+</div></footer>
+
+<script type="module">
+import { ethers } from "https://cdn.jsdelivr.net/npm/ethers@6.13.4/+esm";
+
+const USDC  = "0x82B7CE5992F87Ae64537d708d39Bd233B7aA7cfb";
+const VAULT = "0xDC78557b332B1AF7e157ab91D34f432F30481a53";
+const CHAIN = {
+  chainId:"0x7A0", chainName:"X Layer Testnet",
+  nativeCurrency:{name:"OKB",symbol:"OKB",decimals:18},
+  rpcUrls:["https://testrpc.xlayer.tech/terigon"],
+  blockExplorerUrls:["https://www.okx.com/web3/explorer/xlayer-test"],
+};
+const ERC20 = ["function balanceOf(address) view returns (uint256)",
+  "function allowance(address,address) view returns (uint256)",
+  "function approve(address,uint256) returns (bool)","function faucet()"];
+const VAULT_ABI = ["function balanceOf(address) view returns (uint256)",
+  "function totalAssets() view returns (uint256)","function idleAssets() view returns (uint256)",
+  "function convertToAssets(uint256) view returns (uint256)",
+  "function deposit(uint256,address) returns (uint256)",
+  "function withdraw(uint256,address,address) returns (uint256)"];
+
+const $ = s => document.querySelector(s);
+const U = 1_000_000n;
+const fmt = (v,d=0) => (Number(v)/1e6).toLocaleString("en-US",{minimumFractionDigits:d,maximumFractionDigits:d});
+const parse = s => { const [a,b=""] = String(s).trim().split(".");
+  return BigInt(a||"0")*U + BigInt((b+"000000").slice(0,6)); };
+
+let provider, signer, account, usdc, vault, timer;
+const say = (t,k="") => $("#msg").innerHTML = t ? `<div class="msg ${k}">${t}</div>` : "";
+
+// ---- tabs ----
+function tab(which){
+  const pos = which === "pos";
+  $("#tabPos").setAttribute("aria-selected", pos);
+  $("#tabDep").setAttribute("aria-selected", !pos);
+  $("#panelPos").hidden = !pos;
+  $("#panelDep").hidden = pos;
+}
+$("#tabPos").onclick = () => tab("pos");
+$("#tabDep").onclick = () => tab("dep");
+
+// ---- wallet ----
+async function ensureChain(){
+  const id = await window.ethereum.request({method:"eth_chainId"});
+  if(id === CHAIN.chainId) return;
+  try{
+    await window.ethereum.request({method:"wallet_switchEthereumChain",
+      params:[{chainId:CHAIN.chainId}]});
+  }catch(e){
+    if(e.code === 4902)
+      await window.ethereum.request({method:"wallet_addEthereumChain", params:[CHAIN]});
+    else throw e;
+  }
+}
+
+async function connect(){
+  if(!window.ethereum)
+    return say("No wallet found. Install OKX Wallet or another injected wallet, then reload.","err");
+  try{
+    say("");
+    await window.ethereum.request({method:"eth_requestAccounts"});
+    await ensureChain();
+    provider = new ethers.BrowserProvider(window.ethereum);
+    signer   = await provider.getSigner();
+    account  = await signer.getAddress();
+    usdc  = new ethers.Contract(USDC,  ERC20,     signer);
+    vault = new ethers.Contract(VAULT, VAULT_ABI, signer);
+
+    const short = account.slice(0,6)+"…"+account.slice(-4);
+    $("#addr").textContent = short;  $("#addr").hidden = false;
+    $("#addr2").textContent = short;
+    $("#disconnect").hidden = false;
+    $("#connect2").textContent = "Connected";
+    $("#connect2").disabled = true;
+    $("#posDisconnected").hidden = true;
+    $("#posConnected").hidden = false;
+    ["faucet","deposit","withdraw"].forEach(id => $("#"+id).disabled = false);
+    await refresh();
+    timer = setInterval(() => refresh().catch(()=>{}), 20000);
+  }catch(e){ say(clean(e),"err"); }
+}
+
+function disconnect(){
+  clearInterval(timer);
+  provider = signer = account = usdc = vault = undefined;
+  window._state = undefined;
+  $("#addr").hidden = true;
+  $("#disconnect").hidden = true;
+  $("#connect2").textContent = "Connect wallet";
+  $("#connect2").disabled = false;
+  $("#addr2").textContent = "";
+  $("#walletBal").textContent = "";
+  $("#posDisconnected").hidden = false;
+  $("#posConnected").hidden = true;
+  ["faucet","deposit","withdraw"].forEach(id => $("#"+id).disabled = true);
+  say("Wallet disconnected from this page. Your wallet extension may still list the site as connected; remove it there to revoke fully.");
+}
+
+async function refresh(){
+  if(!account) return;
+  const [bal, shares, nav, idle, okb] = await Promise.all([
+    usdc.balanceOf(account), vault.balanceOf(account),
+    vault.totalAssets(), vault.idleAssets(), provider.getBalance(account),
+  ]);
+  const value = shares > 0n ? await vault.convertToAssets(shares) : 0n;
+  const redeemable = value < idle ? value : idle;
+  const pct = nav > 0n ? Number(value*10000n/nav)/100 : 0;
+
+  $("#shares").textContent  = fmt(shares);
+  $("#value").textContent   = fmt(value);
+  $("#pctVault").textContent= pct.toFixed(2)+"%";
+  $("#navSub").textContent  = `of ${fmt(nav)} under management`;
+  $("#liq").textContent     = fmt(redeemable);
+  $("#walletBal").textContent = `${fmt(bal)} USDC · ${Number(ethers.formatEther(okb)).toFixed(4)} OKB`;
+
+  if(shares > 0n){
+    $("#posHeadline").textContent = fmt(value) + " USDC";
+    $("#posLede").innerHTML = "Managed by the agent across nine catastrophe layers. This value "
+      + "moves with premium and with losses, so it <b>can fall</b>.";
+  }else{
+    $("#posHeadline").textContent = "No shares held";
+    $("#posLede").textContent = "You have not deposited yet. The Deposit tab will mint you some "
+      + "mock USDC and put it under the agent's management.";
+  }
+  window._state = {bal, shares, value, redeemable};
+}
+
+function clean(e){
+  const m = e?.info?.error?.message || e?.shortMessage || e?.message || String(e);
+  if(/user rejected|denied/i.test(m)) return "Transaction rejected in wallet.";
+  if(/insufficient funds/i.test(m))   return "Not enough OKB for gas. Use the X Layer faucet.";
+  return m.length > 220 ? m.slice(0,220)+"…" : m;
+}
+
+async function run(label, fn){
+  const btns = [...document.querySelectorAll("button.act")];
+  const was = btns.map(b => b.disabled);
+  btns.forEach(b => b.disabled = true);
+  try{
+    say(`${label}, confirm in your wallet…`);
+    const tx = await fn();
+    say(`${label}, waiting for confirmation…`);
+    await tx.wait();
+    say(`${label} confirmed.`,"ok");
+    await refresh();
+  }catch(e){ say(clean(e),"err"); }
+  btns.forEach((b,i) => b.disabled = was[i]);
+}
+
+$("#connect1").onclick = () => { connect().then(()=>tab("pos")); };
+$("#connect2").onclick = connect;
+$("#disconnect").onclick = disconnect;
+$("#faucet").onclick = () => run("Faucet claim", () => usdc.faucet());
+$("#max").onclick  = () => { if(window._state) $("#amount").value  = (Number(window._state.bal)/1e6).toFixed(2); };
+$("#wMax").onclick = () => { if(window._state) $("#wAmount").value = (Number(window._state.redeemable)/1e6).toFixed(2); };
+
+$("#deposit").onclick = async () => {
+  let amount;
+  try{ amount = parse($("#amount").value); }catch{ return say("Enter a valid amount.","err"); }
+  if(amount <= 0n) return say("Enter an amount above zero.","err");
+  if(amount > window._state.bal) return say("More than your USDC balance. Claim from the faucet first.","err");
+  if(await usdc.allowance(account, VAULT) < amount){
+    await run("Approval", () => usdc.approve(VAULT, amount));
+    if(await usdc.allowance(account, VAULT) < amount) return;
+  }
+  await run("Deposit", () => vault.deposit(amount, account));
+  $("#amount").value = "";
+  tab("pos");
+};
+
+$("#withdraw").onclick = async () => {
+  let amount;
+  try{ amount = parse($("#wAmount").value); }catch{ return say("Enter a valid amount.","err"); }
+  if(amount <= 0n) return say("Enter an amount above zero.","err");
+  const {redeemable, value} = window._state;
+  if(amount > value) return say("More than your position is worth.","err");
+  if(amount > redeemable)
+    return say(`Only ${fmt(redeemable)} is available now. The rest is committed as layer `
+      + `collateral until those terms end. Withdraw the available amount, or wait.`,"err");
+  await run("Withdrawal", () => vault.withdraw(amount, account, account));
+  $("#wAmount").value = "";
+};
+
+if(window.ethereum){
+  window.ethereum.on?.("accountsChanged", () => location.reload());
+  window.ethereum.on?.("chainChanged",   () => location.reload());
+}
+</script>
+</body>
+</html>

@@ -1,9 +1,9 @@
 {
- "generatedAt": 1786795848,
+ "generatedAt": 1786884875,
  "chain": {
   "id": 1952,
   "name": "X Layer testnet",
-  "head": 38336706
+  "head": 38425584
  },
  "contracts": {
   "VAULT": "0xDC78557b332B1AF7e157ab91D34f432F30481a53",
@@ -22,11 +22,11 @@
  },
  "vault": {
   "epoch": 127,
-  "nav": 3496616.804385,
-  "idle": 554163.118665,
+  "nav": 3498616.804385,
+  "idle": 556163.118665,
   "deployed": 2942453.68572,
   "seedCapital": 3200000,
-  "totalReturn": 0.09269275137031241,
+  "totalReturn": 0.09331775137031251,
   "cumPremium": 4849657.5556,
   "cumLosses": 4553040.751215,
   "lossRatio": 0.9388375775022526

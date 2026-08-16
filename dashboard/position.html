@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aether Re: your position</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+<script>
+/* Decide the connected state before first paint. Without this the page renders
+   the disconnected screen, then swaps once the async wallet check resolves,
+   which reads as a glitch when moving between pages. */
+if(sessionStorage.getItem("aether.connected")==="1")
+  document.documentElement.classList.add("pre-connected");
+</script>
+
+</head>
+<body>
+
+<header class="masthead"><div class="wrap">
+  <h1 class="wordmark">Aether Re</h1>
+  <nav class="sitenav">
+    <a href="./">Portfolio</a>
+    <a href="deposit.html">Deposit</a>
+    <a href="position.html" aria-current="page">Position</a>
+  </nav>
+  <span class="acct">
+    <span id="addr" hidden></span>
+    <button class="linkbtn" id="disconnect" hidden>Disconnect</button>
+  </span>
+</div></header>
+
+<div class="disclosure"><div class="wrap">
+  <strong>Test network only.</strong> The vault holds a mock USDC with no value and the
+  catastrophes driving its returns are simulated. Nothing here is an investment.
+</div></div>
+
+<main>
+<section><div class="wrap">
+  <div id="disconnected" class="whenOut">
+    <p class="eyebrow">Your position</p>
+    <h2>Nothing connected</h2>
+    <p class="lede">Connect a wallet to see whether you hold shares in the vault. Connecting is
+      read only and moves nothing.</p>
+    <button class="act" id="connect">Connect wallet</button>
+  </div>
+
+  <div id="connected" class="whenIn">
+    <p class="eyebrow">Your position</p>
+    <h2 id="headline" class="pending">Loading</h2>
+    <p class="lede" id="lede">Reading your balance from the chain.</p>
+
+    <dl class="stats">
+      <div class="stat"><dt>Shares</dt><dd id="shares" class="pending">&ndash;</dd>
+        <div class="sub">vault tokens</div></div>
+      <div class="stat"><dt>Value</dt><dd id="value" class="pending">&ndash;</dd>
+        <div class="sub">mock USDC</div></div>
+      <div class="stat"><dt>Share of vault</dt><dd id="pct" class="pending">&ndash;</dd>
+        <div class="sub" id="navSub">of total under management</div></div>
+      <div class="stat"><dt>Withdrawable now</dt><dd id="liq" class="pending">&ndash;</dd>
+        <div class="sub">rest committed to layers</div></div>
+    </dl>
+
+    <div class="step" id="withdrawBox" hidden>
+      <span class="num">Withdraw</span>
+      <h3>Redeem shares</h3>
+      <p>Served from idle capital only. Collateral committed to a live layer cannot be pulled
+        mid term, which is true of real collateralised reinsurance, so a large redemption may
+        have to wait for those terms to end.</p>
+      <div class="field">
+        <input id="wAmount" type="text" inputmode="decimal" placeholder="500" aria-label="Amount to withdraw">
+        <button class="act ghost" id="wMax">Max</button>
+        <button class="act" id="withdraw">Withdraw</button>
+      </div>
+    </div>
+
+    <div id="noPosition" hidden>
+      <a class="cta" href="deposit.html">Deposit into the vault</a>
+    </div>
+  </div>
+
+  <div id="msg"></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  Aether Re · X Layer testnet, chain 1952 ·
+  <a href="https://github.com/aether-re/protocol" target="_blank" rel="noopener">source</a>
+</div></footer>
+
+<script type="module">
+import { $, fmt, parseAmt, wallet, say, run, explain } from "./shared.js";
+
+let timer;
+
+async function refresh(){
+  if(!wallet.account) return;
+  const s = await wallet.snapshot();
+  const pct = s.nav > 0n ? Number(s.value*10000n/s.nav)/100 : 0;
+
+  document.querySelectorAll(".pending").forEach(el => el.classList.remove("pending"));
+  $("#shares").textContent = fmt(s.shares);
+  $("#value").textContent  = fmt(s.value);
+  $("#pct").textContent    = pct.toFixed(2)+"%";
+  $("#navSub").textContent = `of ${fmt(s.nav)} under management`;
+  $("#liq").textContent    = fmt(s.redeemable);
+
+  const holds = s.shares > 0n;
+  $("#withdrawBox").hidden = !holds;
+  $("#noPosition").hidden  = holds;
+  if(holds){
+    $("#headline").textContent = fmt(s.value) + " USDC";
+    $("#lede").innerHTML = "Managed by the agent across nine catastrophe layers. This value "
+      + "moves with premium collected and losses paid, so it <b>can fall</b>.";
+  }else{
+    $("#headline").textContent = "No shares held";
+    $("#lede").innerHTML = "You have not deposited yet. "
+      + '<a href="deposit.html">Deposit some mock USDC</a> to put capital under the agent.';
+  }
+  window._s = s;
+}
+
+function onConnected(){
+  document.documentElement.classList.add("pre-connected");
+  $("#addr").textContent = wallet.short();
+  $("#addr").hidden = false;
+  $("#disconnect").hidden = false;
+  $("#disconnected").hidden = true;
+  $("#connected").hidden = false;
+  refresh();
+  timer = setInterval(() => refresh().catch(()=>{}), 20000);
+}
+
+$("#connect").onclick = async () => {
+  try{ say(""); await wallet.connect(); onConnected(); }
+  catch(e){ say(explain(e),"err"); }
+};
+
+$("#disconnect").onclick = () => {
+  clearInterval(timer);
+  wallet.disconnect();
+  document.documentElement.classList.remove("pre-connected");
+  $("#addr").hidden = true;
+  $("#disconnect").hidden = true;
+  $("#disconnected").hidden = false;
+  $("#connected").hidden = true;
+  say("Disconnected from this page. Your wallet extension may still list the site as connected; remove it there to revoke fully.");
+};
+
+$("#wMax").onclick = () => { if(window._s) $("#wAmount").value = (Number(window._s.redeemable)/1e6).toFixed(2); };
+
+$("#withdraw").onclick = async () => {
+  let amount;
+  try{ amount = parseAmt($("#wAmount").value); }catch{ return say("Enter a valid amount.","err"); }
+  if(amount <= 0n) return say("Enter an amount above zero.","err");
+  const {redeemable, value} = window._s;
+  if(amount > value) return say("More than your position is worth.","err");
+  if(amount > redeemable)
+    return say(`Only ${fmt(redeemable)} is available now. The rest is committed as layer `
+      + `collateral until those terms end. Withdraw the available amount, or wait.`,"err");
+  await run("Withdrawal", () => wallet.vault.withdraw(amount, wallet.account, wallet.account), refresh);
+  $("#wAmount").value = "";
+};
+
+if(window.ethereum){
+  window.ethereum.on?.("accountsChanged", () => location.reload());
+  window.ethereum.on?.("chainChanged",   () => location.reload());
+}
+wallet.resume().then(a => { if(a) onConnected(); }).catch(()=>{});
+</script>
+</body>
+</html>
