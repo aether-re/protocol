@@ -85,10 +85,13 @@ footer{padding:32px 0 64px;color:var(--dim);font-size:11px;border-top:1px solid 
 
 @media(max-width:640px){
   .wrap{padding:0 16px}
-  .masthead .wrap,.disclosure .wrap{padding-left:16px;padding-right:16px}
-  .masthead .wrap{gap:10px;padding-top:14px;padding-bottom:12px}
-  .sitenav{gap:16px;order:3;width:100%}
-  .acct{margin-left:0;order:2}
+  .masthead .wrap,.disclosure .wrap{padding-left:20px;padding-right:20px}
+  .masthead .wrap{
+    display:flex;flex-direction:column;align-items:flex-start;
+    gap:8px;padding:20px 20px 18px}
+  .wordmark{order:1;white-space:nowrap}
+  .acct{order:2;margin-left:0}
+  .sitenav{order:3;width:100%;gap:24px;padding-top:10px}
   section{padding:30px 0}
   h2{font-size:25px}
   .stats{grid-template-columns:1fr 1fr}
