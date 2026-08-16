@@ -31,6 +31,7 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
+html,body{overflow-x:hidden;max-width:100%}
 body{
   margin:0;background:var(--ground);color:var(--text);
   font-family:var(--mono);font-size:13px;font-weight:400;line-height:1.6;
@@ -85,6 +86,8 @@ h2{font-family:var(--display);font-weight:400;font-size:34px;
 
 @media(max-width:640px){
   .wrap{padding:0 16px}
+  .tower-wrap::after{content:"scroll sideways to see all three perils";
+    display:block;font-size:10px;color:var(--dim);padding-top:8px;letter-spacing:.04em}
   section{padding:34px 0}
   h2{font-size:26px}
   .stat dd{font-size:26px}
@@ -100,8 +103,9 @@ h2{font-family:var(--display);font-weight:400;font-size:34px;
 }
 
 /* ---- tower ---- */
-.tower-wrap{overflow-x:auto;padding-bottom:6px}
-.tower{display:block;min-width:660px;width:100%;height:auto}
+.tower-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px;
+  max-width:100%;scrollbar-width:thin}
+.tower{display:block;min-width:720px;width:100%;height:auto}
 .legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px;
   font-size:11px;color:var(--muted)}
 .legend i{display:inline-block;width:9px;height:9px;margin-right:7px;
@@ -145,7 +149,9 @@ tr:last-child td{border-bottom:none}
   font-family:var(--sans)}
 .t-active{color:var(--safe)} .t-exhausted{color:var(--exhausted)}
 .t-expired{color:var(--dim)}
-.scroll{max-height:360px;overflow-y:auto}
+.scroll{max-height:360px;overflow-y:auto;overflow-x:auto;max-width:100%}
+.tablebox{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+table{min-width:560px}
 
 .cal-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);
   border:1px solid var(--rule);margin-top:18px}
@@ -552,7 +558,7 @@ function render(d){
     <h2>Layers</h2>
     <p class="lede">Attachment and exhaustion come from a 100,000-year calibration; the agent chooses only
       the line it takes on each.</p>
-    <table>
+    <div class="tablebox"><table>
       <thead><tr><th>Layer</th><th>Region</th><th class="num">Attach</th><th class="num">Exhaust</th>
         <th class="num">Line</th><th class="num">Collateral</th><th class="num">Premium</th><th>State</th></tr></thead>
       <tbody>${d.layers.map(l=>`<tr>
@@ -562,7 +568,7 @@ function render(d){
         <td class="num">${fmt(l.collateralRemaining)}</td>
         <td class="num">${fmt(l.accruedPremium)}</td>
         <td><span class="tag t-${l.state}">${l.state}</span></td></tr>`).join("")}
-      </tbody></table>
+      </tbody></table></div>
   </div></section>
 
   <section><div class="wrap">

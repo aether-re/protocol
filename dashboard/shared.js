@@ -85,6 +85,50 @@ export const wallet = {
   },
 };
 
+/* Cost basis.
+
+   Deriving this from chain events would mean scanning ~130,000 blocks at the
+   RPC's 100-block getLogs cap, which is over a thousand requests from a
+   browser. So contributions are recorded locally when they happen. This is a
+   convenience record, not an on-chain derivation, and the UI says so: clearing
+   browser data resets it, and it does not follow you to another device.
+*/
+const BASIS_KEY = a => `aether.basis.${a.toLowerCase()}`;
+
+export function readBasis(account){
+  try{
+    const raw = localStorage.getItem(BASIS_KEY(account));
+    if(!raw) return null;
+    const b = JSON.parse(raw);
+    return {deposited: BigInt(b.deposited||0), withdrawn: BigInt(b.withdrawn||0),
+            events: b.events||0, since: b.since||null};
+  }catch{ return null; }
+}
+
+function writeBasis(account, b){
+  localStorage.setItem(BASIS_KEY(account), JSON.stringify({
+    deposited: b.deposited.toString(), withdrawn: b.withdrawn.toString(),
+    events: b.events, since: b.since,
+  }));
+}
+
+export function recordDeposit(account, assets){
+  const b = readBasis(account) || {deposited:0n, withdrawn:0n, events:0, since:null};
+  b.deposited += assets;
+  b.events += 1;
+  if(!b.since) b.since = new Date().toISOString();
+  writeBasis(account, b);
+}
+
+export function recordWithdrawal(account, assets){
+  const b = readBasis(account) || {deposited:0n, withdrawn:0n, events:0, since:null};
+  b.withdrawn += assets;
+  b.events += 1;
+  writeBasis(account, b);
+}
+
+export function clearBasis(account){ localStorage.removeItem(BASIS_KEY(account)); }
+
 export function explain(e){
   const m = e?.info?.error?.message || e?.shortMessage || e?.message || String(e);
   if(m === "NO_WALLET") return "No wallet found. Install OKX Wallet or another injected wallet, then reload.";

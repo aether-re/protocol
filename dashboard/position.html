@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="app.css?v=2">
+<link rel="stylesheet" href="app.css">
 <script>
 /* Decide the connected state before first paint. Without this the page renders
    the disconnected screen, then swaps once the async wallet check resolves,
@@ -60,8 +60,18 @@ if(sessionStorage.getItem("aether.connected")==="1")
         <div class="sub">mock USDC</div></div>
       <div class="stat"><dt>Share of vault</dt><dd id="pct" class="pending">&ndash;</dd>
         <div class="sub" id="navSub">of total under management</div></div>
+      <div class="stat"><dt>Value per share</dt><dd id="pps" class="pending">&ndash;</dd>
+        <div class="sub" id="ppsSub">mock USDC per vault token</div></div>
+      <div class="stat"><dt>Vault deployed</dt><dd id="deployed" class="pending">&ndash;</dd>
+        <div class="sub" id="deployedSub">committed as layer collateral</div></div>
+      <div class="stat" id="basisCard" hidden><dt>Net contributed</dt>
+        <dd id="basis">&ndash;</dd>
+        <div class="sub" id="basisSub">recorded in this browser</div></div>
+      <div class="stat" id="pnlCard" hidden><dt>Profit and loss</dt>
+        <dd id="pnl">&ndash;</dd>
+        <div class="sub" id="pnlSub">against what you put in</div></div>
       <div class="stat"><dt>Withdrawable now</dt><dd id="liq" class="pending">&ndash;</dd>
-        <div class="sub">rest committed to layers</div></div>
+        <div class="sub" id="liqSub">checking vault liquidity</div></div>
     </dl>
 
     <div class="step" id="withdrawBox" hidden>
@@ -76,6 +86,13 @@ if(sessionStorage.getItem("aether.connected")==="1")
         <button class="act" id="withdraw">Withdraw</button>
       </div>
     </div>
+
+    <p class="mono-sm" id="basisNote" hidden style="margin:-8px 0 22px">
+      Net contributed and profit and loss are recorded in this browser when you deposit
+      or withdraw, because reconstructing them from chain history would take over a
+      thousand RPC calls. Everything else on this page is read from the chain.
+      <button class="linkbtn" id="resetBasis">Reset local record</button>
+    </p>
 
     <div id="noPosition" hidden>
       <a class="cta" href="deposit.html">Deposit into the vault</a>
@@ -92,7 +109,8 @@ if(sessionStorage.getItem("aether.connected")==="1")
 </div></footer>
 
 <script type="module">
-import { $, fmt, parseAmt, wallet, say, run, explain } from "./shared.js";
+import { $, fmt, parseAmt, wallet, say, run, explain,
+         readBasis, recordWithdrawal, clearBasis } from "./shared.js";
 
 let timer;
 
@@ -108,6 +126,28 @@ async function refresh(){
   $("#navSub").textContent = `of ${fmt(s.nav)} under management`;
   $("#liq").textContent    = fmt(s.redeemable);
 
+  // The caption has to reflect the actual state. Saying "rest committed" when
+  // the whole position is liquid is simply wrong, and small positions usually
+  // are fully liquid because the vault's idle buffer covers them.
+  if(s.shares === 0n){
+    $("#liqSub").textContent = "nothing to withdraw";
+  }else if(s.redeemable >= s.value){
+    $("#liqSub").textContent = "your whole position is liquid";
+  }else{
+    $("#liqSub").textContent = `${fmt(s.value - s.redeemable)} waits for layer terms to end`;
+  }
+
+  const pps = s.shares > 0n ? Number(s.value) / Number(s.shares) : 1;
+  $("#pps").textContent = pps.toFixed(4);
+  $("#ppsSub").textContent = pps >= 1
+    ? `up ${((pps-1)*100).toFixed(2)}% since the vault opened`
+    : `down ${((1-pps)*100).toFixed(2)}% since the vault opened`;
+
+  const deployed = s.nav - s.idle;
+  $("#deployed").textContent = fmt(deployed);
+  $("#deployedSub").textContent =
+    `${fmt(s.idle)} idle, ${s.nav>0n?Number(deployed*100n/s.nav):0}% at risk`;
+
   const holds = s.shares > 0n;
   $("#withdrawBox").hidden = !holds;
   $("#noPosition").hidden  = holds;
@@ -120,6 +160,26 @@ async function refresh(){
     $("#lede").innerHTML = "You have not deposited yet. "
       + '<a href="deposit.html">Deposit some mock USDC</a> to put capital under the agent.';
   }
+  // Cost basis, if this browser has a record of the deposits.
+  const b = readBasis(wallet.account);
+  const hasBasis = b && (b.deposited > 0n);
+  $("#basisCard").hidden = !hasBasis;
+  $("#basisNote").hidden = !hasBasis;
+  $("#pnlCard").hidden   = !hasBasis;
+  if(hasBasis){
+    const net = b.deposited - b.withdrawn;
+    const pnl = s.value + b.withdrawn - b.deposited;
+    const pctRet = b.deposited > 0n ? Number(pnl * 10000n / b.deposited)/100 : 0;
+    $("#basis").textContent = fmt(net);
+    $("#basisSub").textContent = b.withdrawn > 0n
+      ? `${fmt(b.deposited)} in, ${fmt(b.withdrawn)} out, recorded locally`
+      : `across ${b.events} deposit${b.events===1?"":"s"}, recorded locally`;
+    const sign = pnl >= 0n ? "+" : "";
+    $("#pnl").textContent = sign + fmt(pnl);
+    $("#pnl").className = pnl >= 0n ? "pos" : "neg";
+    $("#pnlSub").textContent = `${sign}${pctRet.toFixed(2)}% on capital contributed`;
+  }
+
   window._s = s;
 }
 
@@ -150,6 +210,11 @@ $("#disconnect").onclick = () => {
   say("Disconnected from this page. Your wallet extension may still list the site as connected; remove it there to revoke fully.");
 };
 
+$("#resetBasis").onclick = () => {
+  clearBasis(wallet.account);
+  say("Local record cleared. Chain-derived figures are unaffected.");
+  refresh();
+};
 $("#wMax").onclick = () => { if(window._s) $("#wAmount").value = (Number(window._s.redeemable)/1e6).toFixed(2); };
 
 $("#withdraw").onclick = async () => {
@@ -161,7 +226,9 @@ $("#withdraw").onclick = async () => {
   if(amount > redeemable)
     return say(`Only ${fmt(redeemable)} is available now. The rest is committed as layer `
       + `collateral until those terms end. Withdraw the available amount, or wait.`,"err");
-  await run("Withdrawal", () => wallet.vault.withdraw(amount, wallet.account, wallet.account), refresh);
+  const done = await run("Withdrawal",
+    () => wallet.vault.withdraw(amount, wallet.account, wallet.account), refresh);
+  if(done){ recordWithdrawal(wallet.account, amount); await refresh(); }
   $("#wAmount").value = "";
 };
 
