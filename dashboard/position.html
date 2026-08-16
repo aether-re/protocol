@@ -119,11 +119,11 @@ async function refresh(){
   const pct = s.nav > 0n ? Number(s.value*10000n/s.nav)/100 : 0;
 
   document.querySelectorAll(".pending").forEach(el => el.classList.remove("pending"));
-  $("#shares").textContent = fmt(s.shares);
-  $("#value").textContent  = fmt(s.value);
+  $("#shares").textContent = fmt(s.shares, 2);
+  $("#value").textContent  = fmt(s.value, 2);
   $("#pct").textContent    = pct.toFixed(2)+"%";
   $("#navSub").textContent = `of ${fmt(s.nav)} under management`;
-  $("#liq").textContent    = fmt(s.redeemable);
+  $("#liq").textContent    = fmt(s.redeemable, 2);
 
   // The caption has to reflect the actual state. Saying "rest committed" when
   // the whole position is liquid is simply wrong, and small positions usually
@@ -151,7 +151,7 @@ async function refresh(){
   $("#withdrawBox").hidden = !holds;
   $("#noPosition").hidden  = holds;
   if(holds){
-    $("#headline").textContent = fmt(s.value) + " USDC";
+    $("#headline").textContent = fmt(s.value, 2) + " USDC";
     $("#lede").innerHTML = "Managed by the agent across nine catastrophe layers. This value "
       + "moves with premium collected and losses paid, so it <b>can fall</b>.";
   }else{
@@ -221,9 +221,14 @@ $("#withdraw").onclick = async () => {
   try{ amount = parseAmt($("#wAmount").value); }catch{ return say("Enter a valid amount.","err"); }
   if(amount <= 0n) return say("Enter an amount above zero.","err");
   const {redeemable, value} = window._s;
-  if(amount > value) return say("More than your position is worth.","err");
+  // The page rounds value to the nearest dollar. Typing that rounded figure
+  // (or Max's two-decimal print) must not fail because of leftover wei.
+  if(amount > value && amount - value < 1_000_000n) amount = value;
+  if(amount > redeemable && amount - redeemable < 1_000_000n) amount = redeemable;
+  if(amount > value)
+    return say(`Your position is worth ${fmt(value,2)} USDC. Use Max to withdraw all of it.`,"err");
   if(amount > redeemable)
-    return say(`Only ${fmt(redeemable)} is available now. The rest is committed as layer `
+    return say(`Only ${fmt(redeemable,2)} is available now. The rest is committed as layer `
       + `collateral until those terms end. Withdraw the available amount, or wait.`,"err");
   const done = await run("Withdrawal",
     () => wallet.vault.withdraw(amount, wallet.account, wallet.account), refresh);
