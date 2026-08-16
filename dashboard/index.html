@@ -31,7 +31,7 @@
 }
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%}
-html,body{overflow-x:hidden;max-width:100%}
+html,body{width:100%;max-width:100%;overflow-x:hidden}
 body{
   margin:0;background:var(--ground);color:var(--text);
   font-family:var(--mono);font-size:13px;font-weight:400;line-height:1.6;
@@ -41,7 +41,8 @@ a{color:var(--agent);text-decoration:none;border-bottom:1px solid rgba(62,107,12
 a:hover,a:focus-visible{border-bottom-color:var(--agent)}
 :focus-visible{outline:2px solid var(--agent);outline-offset:2px}
 
-.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 24px;
+  box-sizing:border-box}
 
 /* ---- masthead ---- */
 .masthead{border-bottom:1px solid var(--rule-strong);background:var(--ground);
@@ -63,6 +64,7 @@ a:hover,a:focus-visible{border-bottom-color:var(--agent)}
 .disclosure{background:var(--surface);border-bottom:1px solid var(--rule);
   font-size:11.5px;color:var(--muted)}
 .disclosure .wrap{padding:11px 24px}
+.lede,.disclosure .wrap{overflow-wrap:break-word;word-wrap:break-word}
 .disclosure strong{color:var(--text);font-weight:500}
 
 /* ---- sections ---- */
@@ -79,20 +81,25 @@ h2{font-family:var(--display);font-weight:400;font-size:34px;
 .sitenav a:hover{color:var(--text)}
 .sitenav a[aria-current="page"]{color:var(--text)}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.tower-sec{display:flex;flex-direction:column}
 .cta{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.06em;
   padding:11px 20px;border:1px solid var(--text);background:var(--text);color:var(--ground);
   border-radius:2px;white-space:nowrap;margin-bottom:6px}
 .cta:hover{background:#2C4150;border-color:#2C4150;color:var(--ground)}
 
 @media(max-width:640px){
-  .wrap{padding:0 16px}
-  .tower-wrap::after{content:"scroll sideways to see all three perils";
-    display:block;font-size:10px;color:var(--dim);padding-top:8px;letter-spacing:.04em}
+  html,body{max-width:100vw;overflow-x:hidden}
+  .wrap{padding:0 16px;max-width:100vw}
+  .masthead .wrap,.disclosure .wrap{padding-left:16px;padding-right:16px}
   section{padding:34px 0}
   h2{font-size:26px}
   .stat dd{font-size:26px}
-  .cta{width:100%;text-align:center;margin-bottom:0}
-  .sec-head{align-items:stretch}
+  .tower-sec .sec-head{display:contents}
+  .tower-title{order:1}
+  .tower-sec .lede{order:2}
+  .tower-wrap{order:3}
+  .legend{order:4}
+  .tower-sec .cta{order:5;width:100%;text-align:center;margin:22px 0 0}
   .masthead .wrap{padding-top:14px;padding-bottom:12px;gap:10px}
   .epoch-badge{margin-left:0;order:2}
   .sitenav{gap:16px;order:3;width:100%}
@@ -103,9 +110,8 @@ h2{font-family:var(--display);font-weight:400;font-size:34px;
 }
 
 /* ---- tower ---- */
-.tower-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:8px;
-  max-width:100%;scrollbar-width:thin}
-.tower{display:block;min-width:720px;width:100%;height:auto}
+.tower-wrap{width:100%;max-width:100%;min-width:0;padding-bottom:8px}
+.tower{display:block;width:100%;max-width:100%;height:auto}
 .legend{display:flex;flex-wrap:wrap;gap:18px;margin-top:22px;
   font-size:11px;color:var(--muted)}
 .legend i{display:inline-block;width:9px;height:9px;margin-right:7px;
@@ -149,8 +155,8 @@ tr:last-child td{border-bottom:none}
   font-family:var(--sans)}
 .t-active{color:var(--safe)} .t-exhausted{color:var(--exhausted)}
 .t-expired{color:var(--dim)}
-.scroll{max-height:360px;overflow-y:auto;overflow-x:auto;max-width:100%}
-.tablebox{overflow-x:auto;max-width:100%;-webkit-overflow-scrolling:touch}
+.scroll{max-height:360px;overflow-y:auto;overflow-x:auto;width:100%;max-width:100%;min-width:0}
+.tablebox{overflow-x:auto;width:100%;max-width:100%;min-width:0;-webkit-overflow-scrolling:touch}
 table{min-width:560px}
 
 .cal-sum{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule);
@@ -272,7 +278,7 @@ function tower(d){
     attachX: -stubGap - stubLen - 6,
   };
 
-  let s = `<svg class="tower" viewBox="0 0 ${W} ${H}" role="img" aria-label="Reinsurance tower: nine layers by attachment and exhaustion, with catastrophe events">`;
+  let s = `<svg class="tower" viewBox="0 0 ${W} ${H}" width="100%" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Reinsurance tower: nine layers by attachment and exhaustion, with catastrophe events">`;
   s += `<defs><pattern id="eroded" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
       <rect width="6" height="6" fill="var(--exhausted)" fill-opacity="0.12"/>
       <line x1="0" y1="0" x2="0" y2="6" stroke="var(--exhausted)" stroke-opacity="0.45" stroke-width="2"/>
@@ -502,8 +508,9 @@ function render(d){
 
   $("#app").innerHTML=`
   <section><div class="wrap">
+    <div class="tower-sec">
     <div class="sec-head">
-      <div><p class="eyebrow">Live programme</p><h2>The tower</h2></div>
+      <div class="tower-title"><p class="eyebrow">Live programme</p><h2>The tower</h2></div>
       <a class="cta" href="deposit.html">Deposit into the vault</a>
     </div>
     <p class="lede">Nine collateralised layers across three perils. <b>Vertical position is subject loss</b>
@@ -519,6 +526,7 @@ function render(d){
       <span><i style="border:1px dashed var(--rule);background:none"></i>capacity not taken</span>
       <span style="color:var(--exhausted)">&#9472;&#9472; breached a layer</span>
       <span>&middot; &middot; &middot; fell below every attachment</span>
+    </div>
     </div>
   </div></section>
 
