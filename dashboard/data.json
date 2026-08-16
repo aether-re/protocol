@@ -1,9 +1,9 @@
 {
- "generatedAt": 1786884875,
+ "generatedAt": 1786919485,
  "chain": {
   "id": 1952,
   "name": "X Layer testnet",
-  "head": 38425584
+  "head": 38460615
  },
  "contracts": {
   "VAULT": "0xDC78557b332B1AF7e157ab91D34f432F30481a53",
@@ -21,26 +21,26 @@
   "eventCount": 81
  },
  "vault": {
-  "epoch": 127,
-  "nav": 3498616.804385,
-  "idle": 556163.118665,
-  "deployed": 2942453.68572,
+  "epoch": 128,
+  "nav": 3532326.79947,
+  "idle": 925077.11879,
+  "deployed": 2607249.68068,
   "seedCapital": 3200000,
-  "totalReturn": 0.09331775137031251,
-  "cumPremium": 4849657.5556,
+  "totalReturn": 0.10385212483437489,
+  "cumPremium": 4883367.550685,
   "cumLosses": 4553040.751215,
-  "lossRatio": 0.9388375775022526,
+  "lossRatio": 0.9323567607718439,
   "maxDrawdown": -0.44531165908137627,
   "predBps": 4657,
   "realBps": 7585
  },
  "cedent": {
-  "balance": 49703383.195615,
+  "balance": 49669673.20053,
   "iou": 0.0
  },
  "calibration": {
   "ratioBps": 6139,
-  "resolvedCount": 94,
+  "resolvedCount": 95,
   "eventQuarterCount": 25
  },
  "layers": [
@@ -81,14 +81,14 @@
    "limit": 979.0,
    "technicalElBps": 243,
    "rateOnLineBps": 535,
-   "linePercent": 36.34,
-   "collateralPosted": 355768.6,
-   "collateralRemaining": 355768.6,
-   "accruedPremium": 19033.6201,
+   "linePercent": 0.0,
+   "collateralPosted": 0.0,
+   "collateralRemaining": 0.0,
+   "accruedPremium": 0.0,
    "termStart": 123,
    "termEnd": 127,
-   "state": "active",
-   "erosion": 0.0
+   "state": "expired",
+   "erosion": 0
   },
   {
    "id": 2,
@@ -153,7 +153,7 @@
    "linePercent": 97.57,
    "collateralPosted": 682990.0,
    "collateralRemaining": 682990.0,
-   "accruedPremium": 9254.5145,
+   "accruedPremium": 18509.029,
    "termStart": 126,
    "termEnd": 130,
    "state": "active",
@@ -176,7 +176,7 @@
    "linePercent": 52.19,
    "collateralPosted": 686820.4,
    "collateralRemaining": 686820.4,
-   "accruedPremium": 8791.30112,
+   "accruedPremium": 13186.95168,
    "termStart": 125,
    "termEnd": 129,
    "state": "active",
@@ -196,12 +196,12 @@
    "limit": 275.0,
    "technicalElBps": 750,
    "rateOnLineBps": 1200,
-   "linePercent": 83.59,
-   "collateralPosted": 229872.5,
-   "collateralRemaining": 229872.5,
-   "accruedPremium": 27584.7,
-   "termStart": 123,
-   "termEnd": 127,
+   "linePercent": 100.0,
+   "collateralPosted": 275000.0,
+   "collateralRemaining": 275000.0,
+   "accruedPremium": 0.0,
+   "termStart": 128,
+   "termEnd": 132,
    "state": "active",
    "erosion": 0.0
   },
@@ -222,7 +222,7 @@
    "linePercent": 100.0,
    "collateralPosted": 334000.0,
    "collateralRemaining": 334000.0,
-   "accruedPremium": 0.0,
+   "accruedPremium": 4625.9,
    "termStart": 127,
    "termEnd": 131,
    "state": "active",
@@ -245,7 +245,7 @@
    "linePercent": 100.0,
    "collateralPosted": 577000.0,
    "collateralRemaining": 577000.0,
-   "accruedPremium": 11338.05,
+   "accruedPremium": 15117.4,
    "termStart": 124,
    "termEnd": 128,
    "state": "active",
@@ -1394,6 +1394,15 @@
    "released": 357129.5,
    "nav": 3496616.804385,
    "cumPremium": 4849657.5556,
+   "cumLosses": 4553040.751215
+  },
+  {
+   "epoch": 127,
+   "premium": 33709.995085,
+   "losses": 0.0,
+   "released": 643914.000125,
+   "nav": 3532326.79947,
+   "cumPremium": 4883367.550685,
    "cumLosses": 4553040.751215
   }
  ],
@@ -2724,6 +2733,14 @@
    "predictedBps": 0,
    "confidenceBps": 9000,
    "rationale": "Non-event quarter: no catastrophe exposure expected.",
+   "realizedBps": 0,
+   "resolved": true
+  },
+  {
+   "epoch": 128,
+   "predictedBps": 0,
+   "confidenceBps": 9000,
+   "rationale": "Non-event quarter: no catastrophe exposure expected.",
    "realizedBps": null,
    "resolved": false
   }
@@ -3724,18 +3741,24 @@
    "layerId": 7,
    "linePercent": 100.0,
    "collateral": 334000.0
+  },
+  {
+   "epoch": 128,
+   "layerId": 6,
+   "linePercent": 100.0,
+   "collateral": 275000.0
   }
  ],
  "brief": {
-  "headline": "Renewed Europe mezzanine at 100% of the layer.",
-  "body": "US Southeast is at 60% of deployed capital, against a 60% region cap. Locked Atlantic lines cannot be unwound mid-term, so the only lever is refusing to add. Europe is the genuine diversifier (cross-region correlation ~0). That is why idle capital went there rather than back into Florida or the Gulf. Highest standing score is Europe senior at 0.15 (rate on line 2.6% vs expected loss 0.8%, divided by \u221aEL so juniors are not favoured on raw margin). Florida senior scores 0.11 but was not added: US Southeast at the 60% region cap. The rule does not move. Caps, attachment points and the scoring formula were fixed before the run. The agent only chooses the line inside them.",
+  "headline": "Renewed Europe junior at 100% of the layer.",
+  "body": "US Southeast is 54% of the book, Europe 46%. The second Atlantic peril has to clear a higher hurdle because Florida and the Gulf co-move (measured annual-loss correlation +0.42). Europe is the genuine diversifier (cross-region correlation ~0). That is why idle capital went there rather than back into Florida or the Gulf. Highest standing score is Europe senior at 0.14 (rate on line 2.6% vs expected loss 0.8%, divided by \u221aEL so juniors are not favoured on raw margin). Florida senior scores 0.12 but was not added: it is off-risk this term. The rule does not move. Caps, attachment points and the scoring formula were fixed before the run. The agent only chooses the line inside them.",
   "source": "rule",
-  "epoch": 127,
+  "epoch": 128,
   "actions": [
    {
-    "layer": "EU_WIND_MEZZ",
+    "layer": "EU_WIND_JUNIOR",
     "linePercent": 100.0,
-    "collateral": 334000.0
+    "collateral": 275000.0
    }
   ],
   "taken": [
@@ -3748,15 +3771,14 @@
     "state": "active",
     "linePercent": 52.19,
     "collateral": 686820.4,
-    "navShare": 0.1963119822494341,
-    "score": 0.111,
+    "navShare": 0.1944385214026778,
+    "score": 0.1223,
     "margin": 0.0183,
     "el": 0.0073,
     "rol": 0.0256,
-    "regionShare": 0.602,
+    "regionShare": 0.536,
     "caps": [
-     "layer cap (20% of NAV)",
-     "US Southeast at the 60% region cap"
+     "layer cap (20% of NAV)"
     ]
    },
    {
@@ -3768,15 +3790,14 @@
     "state": "active",
     "linePercent": 97.57,
     "collateral": 682990.0,
-    "navShare": 0.195217149572932,
-    "score": 0.0978,
+    "navShare": 0.19335413702448984,
+    "score": 0.1078,
     "margin": 0.0296,
     "el": 0.0246,
     "rol": 0.0542,
-    "regionShare": 0.602,
+    "regionShare": 0.536,
     "caps": [
-     "layer cap (20% of NAV)",
-     "US Southeast at the 60% region cap"
+     "layer cap (20% of NAV)"
     ]
    },
    {
@@ -3788,32 +3809,13 @@
     "state": "active",
     "linePercent": 100.0,
     "collateral": 577000.0,
-    "navShare": 0.16492231995136353,
-    "score": 0.1472,
+    "navShare": 0.16334841954220505,
+    "score": 0.1358,
     "margin": 0.0187,
     "el": 0.0075,
     "rol": 0.0262,
-    "regionShare": 0.398,
+    "regionShare": 0.464,
     "caps": []
-   },
-   {
-    "id": 1,
-    "name": "FL_WIND_MEZZ",
-    "peril": "FL_WIND",
-    "region": "US Southeast",
-    "tranche": "Mezz",
-    "state": "active",
-    "linePercent": 36.34,
-    "collateral": 355768.6,
-    "navShare": 0.10168835854046564,
-    "score": 0.0971,
-    "margin": 0.0292,
-    "el": 0.0243,
-    "rol": 0.0535,
-    "regionShare": 0.602,
-    "caps": [
-     "US Southeast at the 60% region cap"
-    ]
    },
    {
     "id": 7,
@@ -3824,12 +3826,12 @@
     "state": "active",
     "linePercent": 100.0,
     "collateral": 334000.0,
-    "navShare": 0.09546629959056399,
-    "score": 0.1297,
+    "navShare": 0.09455523765527987,
+    "score": 0.1196,
     "margin": 0.0302,
     "el": 0.0252,
     "rol": 0.0554,
-    "regionShare": 0.398,
+    "regionShare": 0.464,
     "caps": []
    },
    {
@@ -3839,14 +3841,14 @@
     "region": "Europe",
     "tranche": "Junior",
     "state": "active",
-    "linePercent": 83.59,
-    "collateral": 229872.5,
-    "navShare": 0.06570382321147282,
-    "score": 0.112,
+    "linePercent": 100.0,
+    "collateral": 275000.0,
+    "navShare": 0.07785236633294002,
+    "score": 0.1033,
     "margin": 0.045,
     "el": 0.075,
     "rol": 0.12,
-    "regionShare": 0.398,
+    "regionShare": 0.464,
     "caps": []
    }
   ],
@@ -3861,14 +3863,29 @@
     "linePercent": 0.0,
     "collateral": 0.0,
     "navShare": 0.0,
-    "score": 0.1121,
+    "score": 0.1235,
     "margin": 0.0186,
     "el": 0.0074,
     "rol": 0.026,
-    "regionShare": 0.602,
-    "caps": [
-     "US Southeast at the 60% region cap"
-    ]
+    "regionShare": 0.536,
+    "caps": []
+   },
+   {
+    "id": 1,
+    "name": "FL_WIND_MEZZ",
+    "peril": "FL_WIND",
+    "region": "US Southeast",
+    "tranche": "Mezz",
+    "state": "expired",
+    "linePercent": 0.0,
+    "collateral": 0.0,
+    "navShare": 0.0,
+    "score": 0.107,
+    "margin": 0.0292,
+    "el": 0.0243,
+    "rol": 0.0535,
+    "regionShare": 0.536,
+    "caps": []
    },
    {
     "id": 0,
@@ -3880,14 +3897,12 @@
     "linePercent": 0.0,
     "collateral": 0.0,
     "navShare": 0.0,
-    "score": 0.0847,
+    "score": 0.0934,
     "margin": 0.0444,
     "el": 0.0738,
     "rol": 0.1182,
-    "regionShare": 0.602,
-    "caps": [
-     "US Southeast at the 60% region cap"
-    ]
+    "regionShare": 0.536,
+    "caps": []
    },
    {
     "id": 3,
@@ -3899,21 +3914,19 @@
     "linePercent": 0.0,
     "collateral": 0.0,
     "navShare": 0.0,
-    "score": 0.0845,
+    "score": 0.0931,
     "margin": 0.0443,
     "el": 0.0739,
     "rol": 0.1182,
-    "regionShare": 0.602,
-    "caps": [
-     "US Southeast at the 60% region cap"
-    ]
+    "regionShare": 0.536,
+    "caps": []
    }
   ],
   "constraints": {
-   "usSoutheast": 0.602,
-   "europe": 0.398,
-   "junior": 0.0781,
-   "idleBuffer": 0.159,
+   "usSoutheast": 0.536,
+   "europe": 0.464,
+   "junior": 0.1055,
+   "idleBuffer": 0.2619,
    "regionCap": 0.6,
    "juniorCap": 0.35,
    "layerCap": 0.2,
@@ -3926,63 +3939,57 @@
   "paths": 497,
   "seed": "0x265b1b911642ae1a7e6acd06d0c5fed3cbcc95b98d53a9001fb20deaa89fdeaf",
   "note": "Forward stress of the current book under the committed parameter set. Independent seed \u2014 not the live run, which stays sealed.",
-  "startNav": 3498616.804385,
-  "annualPremium": 134839.98034,
-  "meanYearPnl": 75506.6780642406,
-  "pLossYear": 0.1816,
-  "pTenPct": 0.058,
-  "pHalfYear": 0.0004,
+  "startNav": 3532326.79947,
+  "annualPremium": 121221.66024,
+  "meanYearPnl": 67382.46887386192,
+  "pLossYear": 0.1538,
+  "pTenPct": 0.05,
+  "pHalfYear": 0.0002,
   "worstYear": {
    "year": 2856,
-   "loss": 2371204.4225489744,
-   "pnl": -2236364.4422089746
+   "loss": 2060563.322548974,
+   "pnl": -1939341.6623089742
   },
-  "pathMaxDrawdown": -1.0,
-  "pathP05Drawdown": -0.4558495010818664,
-  "pathMedianReturn": 0.7129082432188742,
-  "pathPLoss": 0.04627766599597585,
+  "pathMaxDrawdown": -0.9656862760825502,
+  "pathP05Drawdown": -0.44360271471311596,
+  "pathMedianReturn": 0.6247779951280141,
+  "pathPLoss": 0.052313883299798795,
   "pathPRuin": 0.0,
   "lossByLayer": [
    {
     "name": "EU_WIND_JUNIOR",
     "nice": "Europe junior",
-    "loss": 84950015.59217209,
-    "share": 0.28634851705153896
+    "loss": 101627007.52742207,
+    "share": 0.3775205568608888
    },
    {
     "name": "GULF_WIND_MEZZ",
     "nice": "Gulf mezzanine",
     "loss": 81821917.1070021,
-    "share": 0.2758043593350791
-   },
-   {
-    "name": "FL_WIND_MEZZ",
-    "nice": "Florida mezzanine",
-    "loss": 44147546.48335665,
-    "share": 0.14881203233278686
+    "share": 0.30394927944056604
    },
    {
     "name": "EU_WIND_MEZZ",
     "nice": "Europe mezzanine",
     "loss": 39768126.873316154,
-    "share": 0.13404993603251167
+    "share": 0.14772928739909763
    },
    {
     "name": "GULF_WIND_SENIOR",
     "nice": "Gulf senior",
     "loss": 27121454.265269116,
-    "share": 0.09142068020828688
+    "share": 0.10074985740713417
    },
    {
     "name": "EU_WIND_SENIOR",
     "nice": "Europe senior",
     "loss": 18857451.05768107,
-    "share": 0.06356447503979654
+    "share": 0.07005101889231334
    }
   ]
  },
  "verify": {
-  "generatedAt": 1786906461,
+  "generatedAt": 1786919506,
   "revealed": false,
   "checks": [
    {
@@ -4001,13 +4008,13 @@
     "id": "forecasts",
     "ok": true,
     "label": "Every forecast was published before its outcome",
-    "detail": "95 published, 94 resolved, none revised. Event quarters scored: 25."
+    "detail": "96 published, 95 resolved, none revised. Event quarters scored: 25."
    },
    {
     "id": "identity",
     "ok": true,
     "label": "NAV equals seed plus premiums minus losses",
-    "detail": "seed 3,200,000 + premium 4,849,658 \u2212 losses 4,553,041 vs NAV 3,498,617 (drift 0.06%). Small drift is intra-epoch accrual, not minting."
+    "detail": "seed 3,200,000 + premium 4,883,368 \u2212 losses 4,553,041 vs NAV 3,532,327 (drift 0.06%). Small drift is intra-epoch accrual, not minting."
    },
    {
     "id": "replay",
