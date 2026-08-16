@@ -291,11 +291,12 @@ class Keeper:
         confidence = max(2000, min(9500, confidence))
 
         n_active = sum(1 for l in layers.values() if l["state"] == 0)
+        # Region 0 is US Southeast. The cap is 60%; naming it tells a reader
+        # why the next Atlantic line was refused without decoding the book.
+        se = (by_region.get(0, 0) / deployed) if deployed else 0
         rationale = (
-            f"Event quarter. {n_active} active layers, "
-            f"{deployed/1e6:,.0f} USDC at risk, "
-            f"top-region concentration {top_region:.0%}. "
-            f"Expected loss {bps/100:.2f}% of NAV."
+            f"Event Q. {n_active} layers, {deployed/1e6:,.0f} USDC at risk, "
+            f"US-SE {se:.0%} (cap 60%). EL {bps/100:.2f}% of NAV."
         )
         return bps, confidence, rationale[:200]
 

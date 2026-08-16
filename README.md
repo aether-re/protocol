@@ -1,8 +1,19 @@
 # Aether Re
 
-**An autonomous agent that underwrites catastrophe reinsurance on X Layer.**
+**The first verifiable autonomous reinsurance underwriter.**
+
+An agent that posts capital against catastrophe layers on X Layer. The seed
+and every simulation parameter were committed on-chain before the first storm.
+The agent chooses the line; it does not retune the process.
 
 [Live dashboard](https://aether-re.app) · [github.com/aether-re/protocol](https://github.com/aether-re/protocol) · [@aether_re_](https://x.com/aether_re_) · X Layer testnet, chain 1952
+
+**For judges (90 seconds).** Open the dashboard. Read the epoch memo — it is
+derived from the allocator’s numbers, not a prompt that picked the book. Click
+**Verify everything** (four checks run while the seed is still sealed; the
+fifth is why it is sealed). Click **Stress-test this book** for a 5,000-year
+forward look under the committed parameters. Deposit mock USDC if you want to
+sit in the vault. `?demo=1` plays the first two clicks for you.
 
 ---
 

@@ -86,6 +86,53 @@ h2{font-family:var(--display);font-weight:400;font-size:34px;
   padding:11px 20px;border:1px solid var(--text);background:var(--text);color:var(--ground);
   border-radius:2px;white-space:nowrap;margin-bottom:6px}
 .cta:hover{background:#2C4150;border-color:#2C4150;color:var(--ground)}
+button.act,button.ghost{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.06em;
+  padding:11px 20px;border:1px solid var(--text);background:var(--text);color:var(--ground);
+  border-radius:2px;cursor:pointer}
+button.ghost{background:none;color:var(--text);border-color:var(--rule-strong)}
+button.ghost:hover{background:var(--surface-2);border-color:var(--text)}
+button.act:hover{background:#2C4150;border-color:#2C4150;color:var(--ground)}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0 0}
+
+/* ---- hero / this epoch ---- */
+.hero{padding-top:48px}
+.hero h2{font-size:40px;max-width:22ch}
+.tagline{color:var(--muted);margin:0 0 28px;max-width:68ch;font-size:13px}
+.decision{border:1px solid var(--rule-strong);background:var(--surface);padding:22px 24px;margin:0 0 28px}
+.decision h3{font-family:var(--display);font-size:24px;font-weight:400;margin:0 0 10px;letter-spacing:-.01em}
+.decision .memo{color:var(--muted);margin:0 0 16px;max-width:78ch;font-size:12.5px}
+.decision .memo b{color:var(--text);font-weight:500}
+.whys{display:flex;flex-wrap:wrap;gap:8px}
+.why{border:1px solid var(--rule);background:var(--ground);padding:7px 10px;font-size:11px;color:var(--muted)}
+.why em{font-style:normal;color:var(--text);font-family:var(--sans);font-size:10px;
+  letter-spacing:.12em;text-transform:uppercase;margin-right:8px}
+.why.took em{color:var(--safe)} .why.refused em{color:var(--exhausted)}
+.source{font-size:10px;color:var(--dim);margin:12px 0 0}
+
+/* ---- verify / stress panels ---- */
+.panel-run{border:1px solid var(--rule);background:var(--surface);padding:20px 22px;margin-top:16px}
+.panel-run h3{font-family:var(--display);font-size:22px;font-weight:400;margin:0 0 6px}
+.check{display:flex;gap:12px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--rule)}
+.check:last-child{border-bottom:none}
+.mark{flex:0 0 52px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  font-family:var(--sans);font-weight:500;padding-top:2px}
+.mark.pass{color:var(--safe)} .mark.fail{color:var(--exhausted)} .mark.sealed{color:var(--attached)}
+.check p{margin:0;color:var(--text)}
+.check .detail{color:var(--muted);font-size:11px;margin-top:4px;word-break:break-word}
+.stress-grid{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:16px 0}
+.stress-grid div{background:var(--ground);padding:12px 14px}
+.stress-grid span{display:block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);margin-bottom:6px;font-family:var(--sans);font-weight:500}
+.stress-grid b{font-family:var(--display);font-size:22px;font-weight:400}
+.roadmap{display:grid;gap:14px}
+@media(min-width:760px){.roadmap{grid-template-columns:repeat(4,1fr)}}
+.step-card{border:1px solid var(--rule);background:var(--surface);padding:16px}
+.step-card .num{font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);display:block;margin-bottom:8px}
+.step-card h3{font-family:var(--display);font-size:18px;font-weight:400;margin:0 0 6px}
+.step-card p{margin:0;color:var(--muted);font-size:11.5px}
+.step-card.now{border-color:var(--agent)}
 
 @media(max-width:640px){
   html,body{max-width:100vw;overflow-x:hidden}
@@ -110,6 +157,11 @@ h2{font-family:var(--display);font-weight:400;font-size:34px;
   table{font-size:11.5px}
   th,td{padding-right:8px}
   .panel{padding:16px}
+  .hero h2{font-size:28px}
+  .decision{padding:18px 16px}
+  .actions{flex-direction:column}
+  .actions button{width:100%}
+  .roadmap{grid-template-columns:1fr 1fr}
 }
 
 /* ---- tower ---- */
@@ -500,6 +552,131 @@ function calibration(d){
   return s;
 }
 
+const NICE={FL_WIND_JUNIOR:"Florida junior",FL_WIND_MEZZ:"Florida mezzanine",
+  FL_WIND_SENIOR:"Florida senior",GULF_WIND_JUNIOR:"Gulf junior",
+  GULF_WIND_MEZZ:"Gulf mezzanine",GULF_WIND_SENIOR:"Gulf senior",
+  EU_WIND_JUNIOR:"Europe junior",EU_WIND_MEZZ:"Europe mezzanine",
+  EU_WIND_SENIOR:"Europe senior"};
+const nice=n=>NICE[n]||n;
+
+function hero(d){
+  const v=d.vault;
+  const b=d.brief||{headline:"The agent is on risk.",body:"",taken:[],refused:[],actions:[],source:"rule",constraints:{}};
+  const evQ=(d.forecasts||[]).filter(f=>f.resolved && f.epoch%4===2);
+  const pred=v.predBps!=null?v.predBps:evQ.reduce((a,f)=>a+f.predictedBps,0);
+  const real=v.realBps!=null?v.realBps:evQ.reduce((a,f)=>a+(f.realizedBps||0),0);
+  const dd=v.maxDrawdown!=null?v.maxDrawdown:0;
+  const took=b.taken.slice(0,3).map(t=>`<span class="why took"><em>On risk</em>${nice(t.name)} · ${t.linePercent.toFixed(0)}% · score ${t.score.toFixed(2)}</span>`).join("");
+  const refused=b.refused.filter(t=>t.score>0).slice(0,2).map(t=>{
+    const why=t.caps&&t.caps[0]?t.caps[0]:"off-risk this term";
+    return `<span class="why refused"><em>Refused</em>${nice(t.name)} · ${why}</span>`;
+  }).join("");
+  const src=b.source==="rule"
+    ? "Memo written from the allocator’s numbers. The rule chooses the line; the prose does not."
+    : "Memo drafted by grok-4.5 from the allocator’s numbers. The rule still chooses the line.";
+  return `
+  <section class="hero"><div class="wrap">
+    <p class="eyebrow">X Layer · AI-RWA</p>
+    <h2>The first verifiable autonomous reinsurance underwriter.</h2>
+    <p class="tagline">An agent that posts capital against catastrophe layers.
+      The seed and every simulation parameter were committed on-chain
+      <b style="color:var(--text);font-weight:500">before the first storm</b>.
+      Anyone can prove the losses were not tuned. The same pattern — commit the
+      process, let the agent allocate, settle against an oracle — ports to
+      parametric cover and other RWA risk.</p>
+
+    <div class="decision">
+      <p class="eyebrow">This epoch · ${b.epoch!=null?b.epoch:v.epoch}</p>
+      <h3>${esc(b.headline)}</h3>
+      <p class="memo">${esc(b.body)}</p>
+      <div class="whys">${took}${refused}</div>
+      <p class="source">${src}</p>
+    </div>
+
+    <dl class="stats">
+      <div class="stat"><dt>Net asset value</dt>
+        <dd>${fmt(v.nav)}</dd><div class="sub">USDC · ${fmt(v.deployed)} deployed</div></div>
+      <div class="stat"><dt>Return on seed</dt>
+        <dd class="${v.totalReturn>=0?"pos":"neg"}">${v.totalReturn>=0?"+":""}${pct(v.totalReturn)}</dd>
+        <div class="sub">over ${Math.floor(v.epoch/4)} simulated years</div></div>
+      <div class="stat"><dt>Predicted vs realised</dt>
+        <dd>${(pred/100).toFixed(1)} / ${(real/100).toFixed(1)}%</dd>
+        <div class="sub">cumulative, event quarters only · ${evQ.length} scored</div></div>
+      <div class="stat"><dt>Max drawdown</dt>
+        <dd class="neg">${pct(dd)}</dd>
+        <div class="sub">peak to trough on the live run</div></div>
+    </dl>
+
+    <div class="actions">
+      <button class="act" id="verifyBtn" type="button">Verify everything</button>
+      <button class="ghost" id="stressBtn" type="button">Stress-test this book</button>
+      <a class="cta" href="deposit.html" style="margin:0">Deposit into the vault</a>
+    </div>
+    <div class="panel-run" id="verifyPanel" hidden></div>
+    <div class="panel-run" id="stressPanel" hidden></div>
+  </div></section>`;
+}
+
+function mountVerify(d){
+  const checks=(d.verify&&d.verify.checks)||[];
+  const panel=$("#verifyPanel");
+  if(!panel||!checks.length) return;
+  panel.hidden=false;
+  panel.innerHTML=`<h3>Verify this run</h3>
+    <p class="note" style="color:var(--muted);font-size:11.5px;margin:0 0 12px">
+      Four checks can be run while the seed is sealed. The fifth is the point
+      of sealing it.</p>
+    <div id="checkList"></div>`;
+  const list=$("#checkList");
+  checks.forEach((c,i)=>{
+    setTimeout(()=>{
+      const mark=c.ok===true?"pass":c.ok===false?"fail":"sealed";
+      const label=c.ok===true?"Pass":c.ok===false?"Fail":"Sealed";
+      const row=document.createElement("div");
+      row.className="check";
+      row.innerHTML=`<span class="mark ${mark}">${label}</span>
+        <div><p>${esc(c.label)}</p><div class="detail">${esc(c.detail)}</div></div>`;
+      list.appendChild(row);
+    }, 280*i);
+  });
+}
+
+function mountStress(d){
+  const s=d.stress;
+  const panel=$("#stressPanel");
+  if(!panel||!s) return;
+  panel.hidden=false;
+  const layers=(s.lossByLayer||[]).slice(0,4).map(l=>
+    `<span class="why"><em>${(l.share*100).toFixed(0)}%</em>${esc(l.nice||nice(l.name))}</span>`
+  ).join("");
+  panel.innerHTML=`<h3>Stress-test of the standing book</h3>
+    <p class="note" style="color:var(--muted);font-size:11.5px;margin:0 0 4px">${esc(s.note)}</p>
+    <div class="stress-grid">
+      <div><span>One-year premium</span><b>${fmt(s.annualPremium)}</b></div>
+      <div><span>Mean year P&amp;L</span><b class="${s.meanYearPnl>=0?"pos":"neg"}">${s.meanYearPnl>=0?"+":""}${fmt(s.meanYearPnl)}</b></div>
+      <div><span>P(loss year)</span><b>${pct(s.pLossYear)}</b></div>
+      <div><span>P(year &gt; 10% NAV)</span><b>${pct(s.pTenPct)}</b></div>
+      <div><span>Worst year loss</span><b class="neg">${fmt(s.worstYear.loss)}</b></div>
+      <div><span>30-year median return</span><b class="${s.pathMedianReturn>=0?"pos":"neg"}">${s.pathMedianReturn>=0?"+":""}${pct(s.pathMedianReturn)}</b></div>
+      <div><span>30-year 5th-pct drawdown</span><b class="neg">${pct(s.pathP05Drawdown!=null?s.pathP05Drawdown:s.pathMaxDrawdown)}</b></div>
+      <div><span>P(lose money over 30y)</span><b>${pct(s.pathPLoss)}</b></div>
+    </div>
+    <p class="note" style="color:var(--muted);font-size:11.5px;margin:0 0 8px">
+      ${fmt(s.years)} years, ${s.paths} paths of ${s.horizon} years.
+      Layers that paid, by share of stressed loss:</p>
+    <div class="whys">${layers}</div>`;
+}
+
+function bindHero(d){
+  const vbtn=$("#verifyBtn"), sbtn=$("#stressBtn");
+  if(vbtn) vbtn.onclick=()=>{ mountVerify(d); vbtn.disabled=true; };
+  if(sbtn) sbtn.onclick=()=>{ mountStress(d); sbtn.disabled=true; };
+  if(location.search.includes("demo=1")){
+    setTimeout(()=>vbtn&&vbtn.click(), 900);
+    setTimeout(()=>sbtn&&sbtn.click(), 2800);
+  }
+}
+
 /* ---------- render ---------- */
 function render(d){
   const v=d.vault, ver=d.verification;
@@ -510,6 +687,7 @@ function render(d){
   $("#stamp").textContent=new Date(d.generatedAt*1000).toUTCString();
 
   $("#app").innerHTML=`
+  ${hero(d)}
   <section><div class="wrap">
     <div class="tower-sec">
     <div class="sec-head">
@@ -640,7 +818,31 @@ function render(d){
     <p class="note" style="margin-top:12px">Exceeding an attachment point only costs money if the vault
       held a line on that layer at the time. The right-hand column is what the epoch actually paid, summed
       across every event in it.</p>
+  </div></section>
+
+  <section><div class="wrap">
+    <p class="eyebrow">Next</p>
+    <h2>The path off testnet</h2>
+    <p class="lede">Anyone can fork the scoring rule. They cannot retroactively un-commit
+      the risk process. That is the moat, and it is the infrastructure a
+      <b>50k AI-RWA liquidity grant</b> would be funding: on-chain catastrophe
+      and insurance risk capital that can be audited, not believed.</p>
+    <div class="roadmap">
+      <div class="step-card now"><span class="num">Now</span>
+        <h3>Testnet simulation</h3>
+        <p>Committed seed, frozen parameters, agent on nine layers, forecasts written before settlement.</p></div>
+      <div class="step-card"><span class="num">Next</span>
+        <h3>Parametric oracle</h3>
+        <p>Swap EventOracle for NOAA wind / USGS magnitude. The vault and settlement do not change.</p></div>
+      <div class="step-card"><span class="num">Then</span>
+        <h3>Real cedent</h3>
+        <p>A captive, MGA or parametric buyer replaces SimCedent. Terms become quoted, not calibrated.</p></div>
+      <div class="step-card"><span class="num">After</span>
+        <h3>Regulated vehicle</h3>
+        <p>Counsel, licensing, real capital. The contracts are ready; the licence is not a module swap.</p></div>
+    </div>
   </div></section>`;
+  bindHero(d);
 }
 
 fetch("data.json?"+Date.now())

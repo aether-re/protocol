@@ -278,6 +278,11 @@ def main():
             cache = refresh_cache(w3, contracts, env, reset)
             reset = False
             data = build(w3, contracts, env, cache)
+            try:
+                from enrich import enrich
+                data = enrich(data)
+            except Exception as e:
+                print(f"  warn enrich skipped: {e}")
             OUT.write_text(json.dumps(data, indent=1))
             v = data["vault"]
             print(f"  epoch {v['epoch']}  NAV {v['nav']:,.0f} USDC  "

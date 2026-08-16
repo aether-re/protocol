@@ -29,7 +29,10 @@
   "totalReturn": 0.09331775137031251,
   "cumPremium": 4849657.5556,
   "cumLosses": 4553040.751215,
-  "lossRatio": 0.9388375775022526
+  "lossRatio": 0.9388375775022526,
+  "maxDrawdown": -0.44531165908137627,
+  "predBps": 4657,
+  "realBps": 7585
  },
  "cedent": {
   "balance": 49703383.195615,
@@ -3722,5 +3725,296 @@
    "linePercent": 100.0,
    "collateral": 334000.0
   }
- ]
+ ],
+ "brief": {
+  "headline": "Renewed Europe mezzanine at 100% of the layer.",
+  "body": "US Southeast is at 60% of deployed capital, against a 60% region cap. Locked Atlantic lines cannot be unwound mid-term, so the only lever is refusing to add. Europe is the genuine diversifier (cross-region correlation ~0). That is why idle capital went there rather than back into Florida or the Gulf. Highest standing score is Europe senior at 0.15 (rate on line 2.6% vs expected loss 0.8%, divided by \u221aEL so juniors are not favoured on raw margin). Florida senior scores 0.11 but was not added: US Southeast at the 60% region cap. The rule does not move. Caps, attachment points and the scoring formula were fixed before the run. The agent only chooses the line inside them.",
+  "source": "rule",
+  "epoch": 127,
+  "actions": [
+   {
+    "layer": "EU_WIND_MEZZ",
+    "linePercent": 100.0,
+    "collateral": 334000.0
+   }
+  ],
+  "taken": [
+   {
+    "id": 5,
+    "name": "GULF_WIND_SENIOR",
+    "peril": "GULF_WIND",
+    "region": "US Southeast",
+    "tranche": "Senior",
+    "state": "active",
+    "linePercent": 52.19,
+    "collateral": 686820.4,
+    "navShare": 0.1963119822494341,
+    "score": 0.111,
+    "margin": 0.0183,
+    "el": 0.0073,
+    "rol": 0.0256,
+    "regionShare": 0.602,
+    "caps": [
+     "layer cap (20% of NAV)",
+     "US Southeast at the 60% region cap"
+    ]
+   },
+   {
+    "id": 4,
+    "name": "GULF_WIND_MEZZ",
+    "peril": "GULF_WIND",
+    "region": "US Southeast",
+    "tranche": "Mezz",
+    "state": "active",
+    "linePercent": 97.57,
+    "collateral": 682990.0,
+    "navShare": 0.195217149572932,
+    "score": 0.0978,
+    "margin": 0.0296,
+    "el": 0.0246,
+    "rol": 0.0542,
+    "regionShare": 0.602,
+    "caps": [
+     "layer cap (20% of NAV)",
+     "US Southeast at the 60% region cap"
+    ]
+   },
+   {
+    "id": 8,
+    "name": "EU_WIND_SENIOR",
+    "peril": "EU_WIND",
+    "region": "Europe",
+    "tranche": "Senior",
+    "state": "active",
+    "linePercent": 100.0,
+    "collateral": 577000.0,
+    "navShare": 0.16492231995136353,
+    "score": 0.1472,
+    "margin": 0.0187,
+    "el": 0.0075,
+    "rol": 0.0262,
+    "regionShare": 0.398,
+    "caps": []
+   },
+   {
+    "id": 1,
+    "name": "FL_WIND_MEZZ",
+    "peril": "FL_WIND",
+    "region": "US Southeast",
+    "tranche": "Mezz",
+    "state": "active",
+    "linePercent": 36.34,
+    "collateral": 355768.6,
+    "navShare": 0.10168835854046564,
+    "score": 0.0971,
+    "margin": 0.0292,
+    "el": 0.0243,
+    "rol": 0.0535,
+    "regionShare": 0.602,
+    "caps": [
+     "US Southeast at the 60% region cap"
+    ]
+   },
+   {
+    "id": 7,
+    "name": "EU_WIND_MEZZ",
+    "peril": "EU_WIND",
+    "region": "Europe",
+    "tranche": "Mezz",
+    "state": "active",
+    "linePercent": 100.0,
+    "collateral": 334000.0,
+    "navShare": 0.09546629959056399,
+    "score": 0.1297,
+    "margin": 0.0302,
+    "el": 0.0252,
+    "rol": 0.0554,
+    "regionShare": 0.398,
+    "caps": []
+   },
+   {
+    "id": 6,
+    "name": "EU_WIND_JUNIOR",
+    "peril": "EU_WIND",
+    "region": "Europe",
+    "tranche": "Junior",
+    "state": "active",
+    "linePercent": 83.59,
+    "collateral": 229872.5,
+    "navShare": 0.06570382321147282,
+    "score": 0.112,
+    "margin": 0.045,
+    "el": 0.075,
+    "rol": 0.12,
+    "regionShare": 0.398,
+    "caps": []
+   }
+  ],
+  "refused": [
+   {
+    "id": 2,
+    "name": "FL_WIND_SENIOR",
+    "peril": "FL_WIND",
+    "region": "US Southeast",
+    "tranche": "Senior",
+    "state": "expired",
+    "linePercent": 0.0,
+    "collateral": 0.0,
+    "navShare": 0.0,
+    "score": 0.1121,
+    "margin": 0.0186,
+    "el": 0.0074,
+    "rol": 0.026,
+    "regionShare": 0.602,
+    "caps": [
+     "US Southeast at the 60% region cap"
+    ]
+   },
+   {
+    "id": 0,
+    "name": "FL_WIND_JUNIOR",
+    "peril": "FL_WIND",
+    "region": "US Southeast",
+    "tranche": "Junior",
+    "state": "expired",
+    "linePercent": 0.0,
+    "collateral": 0.0,
+    "navShare": 0.0,
+    "score": 0.0847,
+    "margin": 0.0444,
+    "el": 0.0738,
+    "rol": 0.1182,
+    "regionShare": 0.602,
+    "caps": [
+     "US Southeast at the 60% region cap"
+    ]
+   },
+   {
+    "id": 3,
+    "name": "GULF_WIND_JUNIOR",
+    "peril": "GULF_WIND",
+    "region": "US Southeast",
+    "tranche": "Junior",
+    "state": "expired",
+    "linePercent": 0.0,
+    "collateral": 0.0,
+    "navShare": 0.0,
+    "score": 0.0845,
+    "margin": 0.0443,
+    "el": 0.0739,
+    "rol": 0.1182,
+    "regionShare": 0.602,
+    "caps": [
+     "US Southeast at the 60% region cap"
+    ]
+   }
+  ],
+  "constraints": {
+   "usSoutheast": 0.602,
+   "europe": 0.398,
+   "junior": 0.0781,
+   "idleBuffer": 0.159,
+   "regionCap": 0.6,
+   "juniorCap": 0.35,
+   "layerCap": 0.2,
+   "bufferFloor": 0.12
+  }
+ },
+ "stress": {
+  "years": 5000,
+  "horizon": 30,
+  "paths": 497,
+  "seed": "0x265b1b911642ae1a7e6acd06d0c5fed3cbcc95b98d53a9001fb20deaa89fdeaf",
+  "note": "Forward stress of the current book under the committed parameter set. Independent seed \u2014 not the live run, which stays sealed.",
+  "startNav": 3498616.804385,
+  "annualPremium": 134839.98034,
+  "meanYearPnl": 75506.6780642406,
+  "pLossYear": 0.1816,
+  "pTenPct": 0.058,
+  "pHalfYear": 0.0004,
+  "worstYear": {
+   "year": 2856,
+   "loss": 2371204.4225489744,
+   "pnl": -2236364.4422089746
+  },
+  "pathMaxDrawdown": -1.0,
+  "pathP05Drawdown": -0.4558495010818664,
+  "pathMedianReturn": 0.7129082432188742,
+  "pathPLoss": 0.04627766599597585,
+  "pathPRuin": 0.0,
+  "lossByLayer": [
+   {
+    "name": "EU_WIND_JUNIOR",
+    "nice": "Europe junior",
+    "loss": 84950015.59217209,
+    "share": 0.28634851705153896
+   },
+   {
+    "name": "GULF_WIND_MEZZ",
+    "nice": "Gulf mezzanine",
+    "loss": 81821917.1070021,
+    "share": 0.2758043593350791
+   },
+   {
+    "name": "FL_WIND_MEZZ",
+    "nice": "Florida mezzanine",
+    "loss": 44147546.48335665,
+    "share": 0.14881203233278686
+   },
+   {
+    "name": "EU_WIND_MEZZ",
+    "nice": "Europe mezzanine",
+    "loss": 39768126.873316154,
+    "share": 0.13404993603251167
+   },
+   {
+    "name": "GULF_WIND_SENIOR",
+    "nice": "Gulf senior",
+    "loss": 27121454.265269116,
+    "share": 0.09142068020828688
+   },
+   {
+    "name": "EU_WIND_SENIOR",
+    "nice": "Europe senior",
+    "loss": 18857451.05768107,
+    "share": 0.06356447503979654
+   }
+  ]
+ },
+ "verify": {
+  "generatedAt": 1786906461,
+  "revealed": false,
+  "checks": [
+   {
+    "id": "params",
+    "ok": true,
+    "label": "Parameter hash matches the frozen set",
+    "detail": "computed 0x6988eb75f0204da500c0e360b73e1521851d6d811d6e30afafc96acc42b3ec6f \u00b7 on-chain 0x6988eb75f0204da500c0e360b73e1521851d6d811d6e30afafc96acc42b3ec6f"
+   },
+   {
+    "id": "commitment",
+    "ok": true,
+    "label": "Seed commitment is on-chain and immutable",
+    "detail": "0x097c38be17afb6d93d776fc460c702c96b48f775bd1dcf8c8170093225c3a458"
+   },
+   {
+    "id": "forecasts",
+    "ok": true,
+    "label": "Every forecast was published before its outcome",
+    "detail": "95 published, 94 resolved, none revised. Event quarters scored: 25."
+   },
+   {
+    "id": "identity",
+    "ok": true,
+    "label": "NAV equals seed plus premiums minus losses",
+    "detail": "seed 3,200,000 + premium 4,849,658 \u2212 losses 4,553,041 vs NAV 3,498,617 (drift 0.06%). Small drift is intra-epoch accrual, not minting."
+   },
+   {
+    "id": "replay",
+    "ok": null,
+    "label": "Event stream replays from the revealed seed",
+    "detail": "81 events published. Seed is sealed until the run ends \u2014 that is the point. After reveal, `python3 replay.py` regenerates every event."
+   }
+  ]
+ }
 }
