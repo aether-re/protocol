@@ -8,12 +8,10 @@ The agent chooses the line; it does not retune the process.
 
 [Live dashboard](https://aether-re.app) · [github.com/aether-re/protocol](https://github.com/aether-re/protocol) · [@aether_re_](https://x.com/aether_re_) · X Layer testnet, chain 1952
 
-**For judges (90 seconds).** Open the dashboard. Read the epoch memo — it is
-derived from the allocator’s numbers, not a prompt that picked the book. Click
-**Verify everything** (four checks run while the seed is still sealed; the
-fifth is why it is sealed). Click **Stress-test this book** for a 5,000-year
-forward look under the committed parameters. Deposit mock USDC if you want to
-sit in the vault. `?demo=1` plays the first two clicks for you.
+**For judges (90 seconds).** The home page is the pitch. **How it works** is
+the book: epoch memo (from the allocator’s numbers, not a prompt), **Verify
+everything**, and **Stress-test this book**. **Enter app** is deposit and
+position. `book.html?demo=1` plays the two clicks.
 
 ---
 
