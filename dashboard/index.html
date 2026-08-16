@@ -25,19 +25,17 @@
   transform-origin:62% 38%;animation:drift 22s ease-in-out infinite alternate}
 @keyframes drift{to{transform:scale(1.07)}}
 @media(max-width:860px){
-  .landing{padding:28px 0 56px;align-items:stretch}
-  .stage{grid-template-columns:1fr;gap:28px}
+  .landing{padding:40px 0 72px;align-items:center;min-height:calc(100vh - 140px)}
+  .stage{grid-template-columns:1fr;gap:0}
   .landing h2{font-size:34px;max-width:none}
   .landing .lead{max-width:none;margin:0 0 28px}
   .landing .cta{display:block;width:100%;text-align:center}
-  .more{text-align:center}
-  .plate{aspect-ratio:5/4;max-height:none;width:100%}
+  .more,.plate,.sitenav{display:none}
   .masthead .wrap{
-    display:grid;grid-template-columns:1fr auto;align-items:center;
-    column-gap:12px;row-gap:10px;padding:16px 20px}
-  .wordmark{grid-column:1;grid-row:1;white-space:nowrap}
-  .enter{grid-column:2;grid-row:1;margin:0;justify-self:end}
-  .sitenav{grid-column:1/-1;grid-row:2;width:100%;padding-top:2px}
+    display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;
+    padding:16px 20px}
+  .wordmark{white-space:nowrap}
+  .enter{margin:0}
 }
 @media(prefers-reduced-motion:reduce){.plate img{animation:none}}
 </style>
