@@ -76,7 +76,7 @@ button.ghost:hover:not(:disabled){background:var(--surface-2);border-color:var(-
 .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
 .field{display:flex;gap:10px;margin:14px 0;flex-wrap:wrap}
 input{font-family:var(--mono);font-size:14px;padding:11px 13px;border:1px solid var(--rule-strong);
-  background:var(--ground);color:var(--text);border-radius:2px;flex:0 1 320px;min-width:150px}
+  background:var(--ground);color:var(--text);border-radius:2px;width:180px;max-width:100%;min-width:0}
 input:focus{outline:none;border-color:var(--agent)}
 
 .step{border:1px solid var(--rule);background:var(--surface);padding:22px;margin-bottom:16px}
@@ -110,9 +110,10 @@ footer{padding:32px 0 64px;color:var(--dim);font-size:11px;border-top:1px solid 
   .stat{padding:13px 14px}
   .stat dd{font-size:23px}
   .step{padding:16px}
-  .field{flex-direction:column;align-items:stretch}
-  .field input{min-width:0;width:100%}
-  .field button,.row button.act{width:100%}
+  .field{flex-direction:row;flex-wrap:wrap;align-items:center}
+  .field input{width:160px;max-width:calc(100% - 88px)}
+  .field button.ghost{width:auto}
+  .field button.act:not(.ghost),.row button.act{width:100%}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 
