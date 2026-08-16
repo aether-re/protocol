@@ -159,12 +159,12 @@ button.act:hover{background:#2C4150;border-color:#2C4150;color:var(--ground)}
   .legend{order:4}
   .tower-sec .cta{order:5;width:100%;text-align:center;margin:22px 0 0}
   .masthead .wrap{
-    display:flex;flex-direction:column;align-items:flex-start;
-    gap:8px;padding:20px 20px 18px}
-  .wordmark{order:1;white-space:nowrap}
-  .epoch-badge{order:2;margin-left:0;letter-spacing:.08em}
-  .enter{order:2;margin-left:0}
-  .sitenav{order:3;width:100%;gap:24px;padding-top:10px}
+    display:grid;grid-template-columns:1fr auto;align-items:center;
+    column-gap:12px;row-gap:10px;padding:16px 20px}
+  .wordmark{grid-column:1;grid-row:1;white-space:nowrap}
+  .enter{grid-column:2;grid-row:1;margin:0;justify-self:end}
+  .sitenav{grid-column:1;grid-row:2;width:auto;padding-top:2px}
+  .epoch-badge{grid-column:2;grid-row:2;margin:0;letter-spacing:.08em;justify-self:end}
   .cal-sum{grid-template-columns:1fr}
   table{font-size:11.5px}
   th,td{padding-right:8px}

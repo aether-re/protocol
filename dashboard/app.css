@@ -98,11 +98,12 @@ footer{padding:32px 0 64px;color:var(--dim);font-size:11px;border-top:1px solid 
   .wrap{padding:0 16px}
   .masthead .wrap,.disclosure .wrap{padding-left:20px;padding-right:20px}
   .masthead .wrap{
-    display:flex;flex-direction:column;align-items:flex-start;
-    gap:8px;padding:20px 20px 18px}
-  .wordmark{order:1;white-space:nowrap}
-  .enter,.acct{order:2;margin-left:0}
-  .sitenav{order:3;width:100%;gap:24px;padding-top:10px}
+    display:grid;grid-template-columns:1fr auto;align-items:center;
+    column-gap:12px;row-gap:10px;padding:16px 20px}
+  .wordmark{grid-column:1;grid-row:1;white-space:nowrap}
+  .enter,.acct{grid-column:2;grid-row:1;margin:0;justify-self:end}
+  .sitenav{grid-column:1/-1;grid-row:2;width:100%;gap:14px;padding-top:2px;
+    justify-content:space-between;flex-wrap:wrap}
   section{padding:30px 0}
   h2{font-size:25px}
   .stats{grid-template-columns:1fr 1fr}
