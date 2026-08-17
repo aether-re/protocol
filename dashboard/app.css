@@ -12,7 +12,8 @@
 html{-webkit-text-size-adjust:100%}
 html,body{width:100%;max-width:100%;overflow-x:hidden;overflow-x:clip}
 body{margin:0;background:var(--ground);color:var(--text);
-  font-family:var(--mono);font-size:13px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  font-family:var(--mono);font-size:13px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
 a{color:var(--agent);text-decoration:none;border-bottom:1px solid rgba(62,107,126,.35)}
 a:hover{border-bottom-color:var(--agent)}
 :focus-visible{outline:2px solid var(--agent);outline-offset:2px}
@@ -88,7 +89,7 @@ input:focus{outline:none;border-color:var(--agent)}
 .msg.err{border-color:var(--exhausted);color:var(--exhausted)}
 .msg.ok{border-color:var(--safe);color:var(--safe)}
 .mono-sm{font-size:11px;color:var(--muted)}
-footer{padding:32px 0 64px;color:var(--dim);font-size:11px;border-top:1px solid var(--rule)}
+footer{padding:32px 0 64px;color:var(--dim);font-size:11px;border-top:1px solid var(--rule);margin-top:auto}
 [hidden]{display:none !important}
 
 /* tablet */
@@ -144,6 +145,6 @@ footer{padding:32px 0 64px;color:var(--dim);font-size:11px;border-top:1px solid 
 /* Steady the frame between pages: the masthead and disclosure are identical on
    every page, so fixing their height stops the content jumping. */
 html{background:var(--ground)}
-main{min-height:52vh}
+main{min-height:52vh;flex:1}
 
 .pos{color:var(--safe)} .neg{color:var(--exhausted)}
