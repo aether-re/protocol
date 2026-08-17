@@ -77,15 +77,10 @@ h2{font-family:var(--display);font-weight:400;font-size:34px;
 .lede{color:var(--muted);margin:0 0 30px;max-width:74ch;font-size:12.5px}
 .lede b{color:var(--text);font-weight:500}
 .enter{margin-left:0;position:relative}
-.enter-btn{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;
+.enter-btn{display:inline-block;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;
   text-transform:uppercase;background:var(--text);color:var(--ground);
   border:1px solid var(--text);padding:9px 16px;border-radius:2px;cursor:pointer}
 .enter-btn:hover{background:#2C4150;border-color:#2C4150}
-.enter-menu{position:absolute;right:0;top:calc(100% + 8px);min-width:168px;
-  background:var(--ground);border:1px solid var(--rule-strong);padding:6px 0;z-index:30}
-.enter-menu a{display:block;padding:10px 16px;border:none;color:var(--text);
-  font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase}
-.enter-menu a:hover{background:var(--surface)}
 .sec-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap}
 .tower-sec{display:flex;flex-direction:column}
 .cta{font-family:var(--sans);font-size:12px;font-weight:500;letter-spacing:.06em;
@@ -267,11 +262,7 @@ footer{padding:36px 0 72px;color:var(--dim);font-size:11px}
     <a class="wordmark" href="./" style="border:none">Aether Re</a>
     <span class="epoch-badge"><span class="pulse"></span><span id="epochBadge">–</span></span>
     <div class="enter">
-      <button type="button" class="enter-btn" aria-expanded="false" aria-haspopup="true">Enter app</button>
-      <div class="enter-menu" hidden>
-        <a href="deposit.html">Deposit</a>
-        <a href="position.html">Position</a>
-      </div>
+      <a class="enter-btn" href="deposit.html">Enter app</a>
     </div>
   </div>
 </header>
@@ -839,20 +830,6 @@ fetch("data.json?"+Date.now())
   .then(render)
   .catch(e=>{$("#boot").textContent=e.message});
 
-const enterBtn=document.querySelector(".enter-btn");
-const enterMenu=document.querySelector(".enter-menu");
-if(enterBtn&&enterMenu){
-  enterBtn.addEventListener("click",e=>{
-    e.stopPropagation();
-    const open=enterMenu.hidden;
-    enterMenu.hidden=!open;
-    enterBtn.setAttribute("aria-expanded", open?"true":"false");
-  });
-  document.addEventListener("click",()=>{
-    enterMenu.hidden=true;
-    enterBtn.setAttribute("aria-expanded","false");
-  });
-}
 </script>
 </body>
 </html>

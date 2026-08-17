@@ -68,11 +68,7 @@ footer{margin-top:auto}
 <header class="masthead"><div class="wrap">
   <h1 class="wordmark">Aether Re</h1>
   <div class="enter">
-    <button type="button" class="enter-btn" aria-expanded="false" aria-haspopup="true">Enter app</button>
-    <div class="enter-menu" hidden>
-      <a href="deposit.html">Deposit</a>
-      <a href="position.html">Position</a>
-    </div>
+    <a class="enter-btn" href="deposit.html">Enter app</a>
   </div>
 </div></header>
 
@@ -99,19 +95,6 @@ footer{margin-top:auto}
 </div></footer>
 
 <script>
-const btn=document.querySelector(".enter-btn");
-const menu=document.querySelector(".enter-menu");
-btn.addEventListener("click",e=>{
-  e.stopPropagation();
-  const open=menu.hidden;
-  menu.hidden=!open;
-  btn.setAttribute("aria-expanded", open?"true":"false");
-});
-document.addEventListener("click",()=>{
-  menu.hidden=true;
-  btn.setAttribute("aria-expanded","false");
-});
-
 fetch("data.json?"+Date.now())
   .then(r=>r.ok?r.json():null)
   .then(d=>{
