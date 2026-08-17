@@ -54,11 +54,13 @@ section{padding:44px 0}
 .eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);
   margin:0 0 10px;font-family:var(--sans);font-weight:500}
 h2{font-family:var(--display);font-weight:400;font-size:32px;margin:0 0 8px;line-height:1.1}
+h2.page-title{font-size:40px;margin:0 0 14px;letter-spacing:-.02em}
+.amount{font-family:var(--display);font-size:34px;margin:0 0 12px;line-height:1.1}
 .lede{color:var(--muted);margin:0 0 26px;font-size:12.5px;max-width:74ch}
 .lede b{color:var(--text);font-weight:500}
 
 .stats{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin-bottom:24px}
+  grid-template-columns:repeat(4,1fr);margin-bottom:24px}
 .stat{background:var(--ground);padding:16px 18px}
 .stat dt{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);
   margin:0 0 9px;font-family:var(--sans);font-weight:500}
@@ -94,18 +96,33 @@ input:focus{outline:none;border-color:var(--agent)}
 footer{padding:32px 0 64px;color:var(--dim);font-size:11px;border-top:1px solid var(--rule)}
 [hidden]{display:none !important}
 
+/* tablet */
+@media(min-width:641px) and (max-width:1024px){
+  .wrap{padding:0 20px}
+  section{padding:36px 0}
+  h2{font-size:28px}
+  h2.page-title{font-size:36px}
+  .amount{font-size:32px}
+  .stats{grid-template-columns:repeat(3,1fr)}
+  .stat{padding:14px 16px}
+  .stat dd{font-size:26px}
+  .step{padding:18px}
+}
+
 @media(max-width:640px){
   .wrap{padding:0 16px}
   .masthead .wrap,.disclosure .wrap{padding-left:20px;padding-right:20px}
   .masthead .wrap{
-    display:grid;grid-template-columns:1fr auto;align-items:center;
-    column-gap:12px;row-gap:10px;padding:16px 20px}
-  .wordmark{grid-column:1;grid-row:1;white-space:nowrap}
-  .enter,.acct{grid-column:2;grid-row:1;margin:0;justify-self:end}
-  .sitenav{grid-column:1/-1;grid-row:2;width:100%;gap:14px;padding-top:2px;
-    justify-content:space-between;flex-wrap:wrap}
+    display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;
+    gap:12px;padding:16px 20px}
+  .wordmark{white-space:nowrap;flex:0 0 auto}
+  .sitenav{margin-left:auto;width:auto;gap:16px;padding:0;
+    justify-content:flex-end;flex-wrap:nowrap}
+  .enter,.acct{margin:0;flex:0 0 auto}
   section{padding:30px 0}
   h2{font-size:25px}
+  h2.page-title{font-size:34px}
+  .amount{font-size:30px}
   .stats{grid-template-columns:1fr 1fr}
   .stat{padding:13px 14px}
   .stat dd{font-size:23px}

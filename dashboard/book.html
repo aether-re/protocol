@@ -76,11 +76,6 @@ h2{font-family:var(--display);font-weight:400;font-size:34px;
   letter-spacing:-.01em;margin:0 0 8px;line-height:1.1}
 .lede{color:var(--muted);margin:0 0 30px;max-width:74ch;font-size:12.5px}
 .lede b{color:var(--text);font-weight:500}
-.sitenav{display:flex;gap:20px;font-family:var(--sans);font-size:11px;font-weight:500;
-  letter-spacing:.16em;text-transform:uppercase}
-.sitenav a{border:none;color:var(--dim)}
-.sitenav a:hover{color:var(--text)}
-.sitenav a[aria-current="page"]{color:var(--text)}
 .enter{margin-left:0;position:relative}
 .enter-btn{font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.16em;
   text-transform:uppercase;background:var(--text);color:var(--ground);
@@ -131,19 +126,32 @@ button.act:hover{background:#2C4150;border-color:#2C4150;color:var(--ground)}
 .check p{margin:0;color:var(--text)}
 .check .detail{color:var(--muted);font-size:11px;margin-top:4px;word-break:break-word}
 .stress-grid{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));margin:16px 0}
+  grid-template-columns:repeat(4,1fr);margin:16px 0}
 .stress-grid div{background:var(--ground);padding:12px 14px}
 .stress-grid span{display:block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--dim);margin-bottom:6px;font-family:var(--sans);font-weight:500}
 .stress-grid b{font-family:var(--display);font-size:22px;font-weight:400}
-.roadmap{display:grid;gap:14px}
-@media(min-width:760px){.roadmap{grid-template-columns:repeat(4,1fr)}}
+.roadmap{display:grid;gap:14px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:900px){.roadmap{grid-template-columns:repeat(4,1fr)}}
 .step-card{border:1px solid var(--rule);background:var(--surface);padding:16px}
 .step-card .num{font-family:var(--sans);font-size:10px;letter-spacing:.16em;text-transform:uppercase;
   color:var(--dim);display:block;margin-bottom:8px}
 .step-card h3{font-family:var(--display);font-size:18px;font-weight:400;margin:0 0 6px}
 .step-card p{margin:0;color:var(--muted);font-size:11.5px}
 .step-card.now{border-color:var(--agent)}
+
+/* tablet */
+@media(min-width:641px) and (max-width:1024px){
+  .wrap{padding:0 20px}
+  section{padding:40px 0}
+  h2{font-size:29px}
+  .hero h2{font-size:34px}
+  .decision{padding:20px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .stress-grid{grid-template-columns:repeat(2,1fr)}
+  .stat{padding:16px 18px}
+  .stat dd{font-size:29px}
+}
 
 @media(max-width:640px){
   html,body{max-width:100vw;overflow-x:hidden}
@@ -152,6 +160,9 @@ button.act:hover{background:#2C4150;border-color:#2C4150;color:var(--ground)}
   section{padding:34px 0}
   h2{font-size:26px}
   .stat dd{font-size:26px}
+  .stats{grid-template-columns:1fr 1fr}
+  .stress-grid{grid-template-columns:1fr 1fr}
+  .epoch-badge{display:none}
   .tower-sec .sec-head{display:contents}
   .tower-title{order:1}
   .tower-sec .lede{order:2}
@@ -159,12 +170,10 @@ button.act:hover{background:#2C4150;border-color:#2C4150;color:var(--ground)}
   .legend{order:4}
   .tower-sec .cta{order:5;width:100%;text-align:center;margin:22px 0 0}
   .masthead .wrap{
-    display:grid;grid-template-columns:1fr auto;align-items:center;
-    column-gap:12px;row-gap:10px;padding:16px 20px}
-  .wordmark{grid-column:1;grid-row:1;white-space:nowrap}
-  .enter{grid-column:2;grid-row:1;margin:0;justify-self:end}
-  .sitenav{grid-column:1;grid-row:2;width:auto;padding-top:2px}
-  .epoch-badge{grid-column:2;grid-row:2;margin:0;letter-spacing:.08em;justify-self:end}
+    display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;
+    gap:12px;padding:16px 20px}
+  .wordmark{white-space:nowrap;flex:0 0 auto}
+  .enter{margin:0;flex:0 0 auto}
   .cal-sum{grid-template-columns:1fr}
   table{font-size:11.5px}
   th,td{padding-right:8px}
@@ -173,7 +182,6 @@ button.act:hover{background:#2C4150;border-color:#2C4150;color:var(--ground)}
   .decision{padding:18px 16px}
   .actions{flex-direction:column}
   .actions button{width:100%}
-  .roadmap{grid-template-columns:1fr 1fr}
 }
 
 /* ---- tower ---- */
@@ -186,7 +194,7 @@ button.act:hover{background:#2C4150;border-color:#2C4150;color:var(--ground)}
 
 /* ---- stats ---- */
 .stats{display:grid;gap:1px;background:var(--rule);
-  grid-template-columns:repeat(auto-fit,minmax(178px,1fr));
+  grid-template-columns:repeat(4,1fr);
   border:1px solid var(--rule)}
 .stat{background:var(--ground);padding:20px 22px}
 .stat dt{font-size:10px;letter-spacing:.18em;text-transform:uppercase;
@@ -257,9 +265,6 @@ footer{padding:36px 0 72px;color:var(--dim);font-size:11px}
 <header class="masthead">
   <div class="wrap">
     <a class="wordmark" href="./" style="border:none">Aether Re</a>
-    <nav class="sitenav">
-      <a href="book.html" aria-current="page">How it works</a>
-    </nav>
     <span class="epoch-badge"><span class="pulse"></span><span id="epochBadge">–</span></span>
     <div class="enter">
       <button type="button" class="enter-btn" aria-expanded="false" aria-haspopup="true">Enter app</button>
@@ -667,8 +672,15 @@ function mountStress(d){
 
 function bindHero(d){
   const vbtn=$("#verifyBtn"), sbtn=$("#stressBtn");
-  if(vbtn) vbtn.onclick=()=>{ mountVerify(d); vbtn.disabled=true; };
-  if(sbtn) sbtn.onclick=()=>{ mountStress(d); sbtn.disabled=true; };
+  const vpanel=$("#verifyPanel"), spanel=$("#stressPanel");
+  if(vbtn) vbtn.onclick=()=>{
+    if(!vpanel.hidden){ vpanel.hidden=true; vpanel.innerHTML=""; return; }
+    mountVerify(d);
+  };
+  if(sbtn) sbtn.onclick=()=>{
+    if(!spanel.hidden){ spanel.hidden=true; spanel.innerHTML=""; return; }
+    mountStress(d);
+  };
   if(location.search.includes("demo=1")){
     setTimeout(()=>vbtn&&vbtn.click(), 900);
     setTimeout(()=>sbtn&&sbtn.click(), 2800);
@@ -802,9 +814,8 @@ function render(d){
     <p class="eyebrow">Next</p>
     <h2>The path off testnet</h2>
     <p class="lede">Anyone can fork the scoring rule. They cannot retroactively un-commit
-      the risk process. That is the moat, and it is the infrastructure a
-      <b>50k AI-RWA liquidity grant</b> would be funding: on-chain catastrophe
-      and insurance risk capital that can be audited, not believed.</p>
+      the risk process. That is the moat: on-chain catastrophe and insurance
+      risk capital that can be audited, not believed.</p>
     <div class="roadmap">
       <div class="step-card now"><span class="num">Now</span>
         <h3>Testnet simulation</h3>

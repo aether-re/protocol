@@ -32,24 +32,18 @@ if(sessionStorage.getItem("aether.connected")==="1")
   </span>
 </div></header>
 
-<div class="disclosure"><div class="wrap">
-  <strong>Test network only.</strong> The vault holds a mock USDC with no value and the
-  catastrophes driving its returns are simulated. Nothing here is an investment.
-</div></div>
-
 <main>
 <section><div class="wrap">
   <div id="disconnected" class="whenOut">
-    <p class="eyebrow">Your position</p>
-    <h2>Nothing connected</h2>
-    <p class="lede">Connect a wallet to see whether you hold shares in the vault. Connecting is
+    <h2 class="page-title">Your position</h2>
+    <p class="lede">Nothing connected. Connect a wallet to see whether you hold shares in the vault. Connecting is
       read only and moves nothing.</p>
     <button class="act" id="connect">Connect wallet</button>
   </div>
 
   <div id="connected" class="whenIn">
-    <p class="eyebrow">Your position</p>
-    <h2 id="headline" class="pending">Loading</h2>
+    <h2 class="page-title">Your position</h2>
+    <p id="headline" class="amount pending">Loading</p>
     <p class="lede" id="lede">Reading your balance from the chain.</p>
 
     <dl class="stats">

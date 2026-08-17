@@ -9,44 +9,64 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="app.css">
 <style>
-.landing{min-height:calc(100vh - 180px);display:flex;align-items:center;padding:56px 0 80px}
-.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center;width:100%}
-.copy{min-width:0}
-.landing h2{font-family:var(--display);font-weight:400;font-size:52px;line-height:1.05;
-  letter-spacing:-.02em;margin:0 0 24px;max-width:14ch}
-.landing .lead{font-size:16px;line-height:1.65;color:var(--muted);max-width:42ch;margin:0 0 36px}
-.landing .cta{font-size:13px;padding:14px 28px}
-.more{margin-top:28px;font-size:12px}
-.more a{border-bottom-color:transparent}
-.more a:hover{border-bottom-color:var(--agent)}
-.plate{margin:0;overflow:hidden;border-radius:2px;aspect-ratio:3/4;max-height:78vh;
+body{min-height:100vh;min-height:100dvh;display:flex;flex-direction:column}
+main{flex:1;display:flex;flex-direction:column}
+.hero{flex:1;display:flex;align-items:center;padding:40px 0}
+.stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,0.92fr);gap:56px;align-items:start;width:100%}
+.copy{min-width:0;display:flex;flex-direction:column;gap:22px}
+.kicker{display:flex;align-items:center;gap:10px;margin:0;
+  font-family:var(--sans);font-size:10px;font-weight:500;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--dim)}
+.pulse{width:6px;height:6px;border-radius:50%;background:var(--safe);flex:0 0 auto;
+  box-shadow:0 0 0 0 rgba(94,143,130,.5);animation:pulse 2.4s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 7px rgba(94,143,130,0)}
+  100%{box-shadow:0 0 0 0 rgba(94,143,130,0)}}
+.hero h2{font-family:var(--display);font-weight:400;font-size:60px;line-height:1.04;
+  letter-spacing:-.02em;margin:0}
+.hero .lead{font-size:16px;line-height:1.65;color:var(--muted);max-width:42ch;margin:0}
+.hero .cta{font-size:13px;padding:14px 28px;align-self:start}
+.plate{margin:0;overflow:hidden;border-radius:2px;aspect-ratio:4/5;max-height:560px;
   background:var(--surface-2);min-width:0}
 .plate img{width:100%;height:100%;object-fit:cover;display:block;
   transform-origin:62% 38%;animation:drift 22s ease-in-out infinite alternate}
 @keyframes drift{to{transform:scale(1.07)}}
-@media(max-width:860px){
-  .landing{padding:40px 0 72px;align-items:center;min-height:calc(100vh - 140px)}
-  .stage{grid-template-columns:1fr;gap:0}
-  .landing h2{font-size:44px;max-width:12ch;line-height:1.02}
-  .landing .lead{max-width:none;margin:0 0 28px}
-  .landing .cta{display:block;width:100%;text-align:center}
-  .more,.plate,.sitenav{display:none}
+footer{margin-top:auto}
+
+/* tablet */
+@media(max-width:1100px){
+  .hero{padding:32px 0}
+  .stage{gap:32px}
+  .copy{gap:20px}
+  .hero h2{font-size:48px}
+  .hero .lead{font-size:15px;max-width:38ch}
+  .plate{max-height:420px}
   .masthead .wrap{
     display:flex;flex-wrap:nowrap;align-items:center;justify-content:space-between;
-    padding:16px 20px}
+    gap:12px;padding:16px 24px}
   .wordmark{white-space:nowrap}
-  .enter{margin:0}
+  .enter{margin:0;flex:0 0 auto}
 }
-@media(prefers-reduced-motion:reduce){.plate img{animation:none}}
+
+/* phone — no plate. Content pins to the top of the hero; the footer still
+   pins to the bottom of the viewport via main's flex:1 (short content will
+   naturally leave air between the two, which is expected). */
+@media(max-width:720px){
+  .hero{padding:28px 0;align-items:flex-start}
+  .stage{grid-template-columns:1fr}
+  .copy{gap:20px}
+  .kicker{flex-wrap:wrap;row-gap:4px}
+  .hero h2{font-size:48px;max-width:none;line-height:1.04}
+  .hero .lead{font-size:16px;line-height:1.7;max-width:none}
+  .plate{display:none}
+  .masthead .wrap{padding:16px 20px}
+}
+@media(prefers-reduced-motion:reduce){.plate img,.pulse{animation:none}}
 </style>
 </head>
 <body>
 
 <header class="masthead"><div class="wrap">
   <h1 class="wordmark">Aether Re</h1>
-  <nav class="sitenav">
-    <a href="book.html">How it works</a>
-  </nav>
   <div class="enter">
     <button type="button" class="enter-btn" aria-expanded="false" aria-haspopup="true">Enter app</button>
     <div class="enter-menu" hidden>
@@ -56,19 +76,22 @@
   </div>
 </div></header>
 
-<main class="landing"><div class="wrap stage">
+<main>
+<section class="hero"><div class="wrap stage">
   <div class="copy">
-    <h2>The first verifiable autonomous reinsurance underwriter.</h2>
+    <p class="kicker"><span class="pulse" aria-hidden="true"></span>
+      <span id="kicker">Epoch 128 · seed sealed · X Layer testnet</span></p>
+    <h2>The first verifiable<br>autonomous reinsurance<br>underwriter.</h2>
     <p class="lead">An agent that posts capital against catastrophe layers.
       The seed was committed on-chain before the first storm, so the losses
       cannot be tuned after the fact.</p>
-    <a class="cta" href="deposit.html">Deposit</a>
-    <p class="more"><a href="book.html">How the book works</a></p>
+    <a class="cta" href="book.html">How it works</a>
   </div>
   <figure class="plate">
     <img src="hero.jpg" alt="A stone risk tower on a shoreline, a storm sitting on the horizon.">
   </figure>
-</div></main>
+</div></section>
+</main>
 
 <footer><div class="wrap">
   Aether Re · X Layer testnet, chain 1952 ·
@@ -88,6 +111,16 @@ document.addEventListener("click",()=>{
   menu.hidden=true;
   btn.setAttribute("aria-expanded","false");
 });
+
+fetch("data.json?"+Date.now())
+  .then(r=>r.ok?r.json():null)
+  .then(d=>{
+    if(!d||!d.vault) return;
+    const sealed = d.verification && d.verification.revealed===false;
+    document.getElementById("kicker").textContent =
+      "Epoch "+d.vault.epoch+" · seed "+(sealed?"sealed":"revealed")+" · X Layer testnet";
+  })
+  .catch(()=>{});
 </script>
 </body>
 </html>
